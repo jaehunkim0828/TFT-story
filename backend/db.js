@@ -1,9 +1,10 @@
-import knex from 'knex';
+import mysql from 'mysql2';
 
-
-knex({
-    client: 'mysql',
-    connection: {
-        host: 'localhost'
-    }
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'tft_db',
+    password: 'gkfajsl132!'
 })
+
+export const db = pool.promise();
