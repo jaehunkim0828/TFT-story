@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  background-color: tomato;
+  padding: 2%;
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+
+    .mainLogo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .subLogo {
+      color: rgb(49, 49, 49);
+    }
+  }
+}
