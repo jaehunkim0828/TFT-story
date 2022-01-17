@@ -2,8 +2,9 @@ import { AppProps } from "next/dist/shared/lib/router/router";
 
 import NavBar from "../components/NavBar";
 import '../styles/globals.css';
+import { wrapper } from '../store';
 
-export default function App({ Component, PageProp }: AppProps) {
+function App({ Component, PageProp }: AppProps) {
 return (
         <div>
             <NavBar />
@@ -11,3 +12,5 @@ return (
         </div>
     )
 };
+
+export default wrapper.withRedux(App);
