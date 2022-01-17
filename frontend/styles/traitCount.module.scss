@@ -1,0 +1,17 @@
+.container {
+  width: 150px;
+  height: 5rem;
+}
+
+.trait {
+  display: flex;
+  background-color: gray;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  height: 2rem;
+  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
