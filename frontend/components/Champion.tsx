@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import style from '../styles/champion.module.scss';
 import { seleteChamp } from '../store/actions/selectedChamp';
 
-export default function Champion({ champ, index }: { champ: { images: string, cost: number }, index: number }) {
+export default function Champion({ champ, index }: { champ: { images: string, cost: number, id: number }, index: number }) {
     const dispatch = useDispatch();
 
     const [{ isDragging }, drag] = useDrag(() => ({
@@ -51,7 +51,7 @@ export default function Champion({ champ, index }: { champ: { images: string, co
 
     useEffect(() => {
         if (isDragging) {
-            dispatch(seleteChamp(champ.images));
+            dispatch(seleteChamp([champ.images, champ.id]));
         }
     }, [isDragging]);
 
