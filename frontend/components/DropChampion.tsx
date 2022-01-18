@@ -1,20 +1,32 @@
 import { useDrop } from 'react-dnd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import axios from 'axios';
 
 import style from '../styles/table.module.scss';
 import { RootState } from '../store/reducers';
-import { useState } from 'react';
+import { countUp } from '../store/actions/traitAct';
 
 
 
 export default function DropChampion({ styles, indexs }: { styles: object, indexs: number }) {
-    const { image } = useSelector((state: RootState) => state.championImgReducer);
+    const dispatch = useDispatch();
+    const { image, id } = useSelector((state: RootState) => state.championImgReducer);
     const [isImage, setIsImage] = useState(false);
     const [boxImg, setBoxImg] = useState('');
 
+    const getchampionTraits = async () => {
+        return axios.get(`http://localhost:8888/champion/${id}`)
+        .then(({ data }) => data.map((trait: string) => {
+            console.log(trait);
+            dispatch(countUp(trait))
+        }));
+    }
+
     const [{ isOver }, drop] = useDrop(() => ({
         accept: 'champion',
-        drop: () => {
+        drop: async () => {
+            await getchampionTraits();
             setBoxImg(image);
             setIsImage(true);
         },
