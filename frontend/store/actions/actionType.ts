@@ -1,1 +1,4 @@
 export const CHOOSE_CHAMP = 'CHOOSE_CHAMP';
+
+export const COUNT_UP_TRAIT = 'COUNT_UP_TRAIT';
+export const COUNT_DOWN_TRAIT = 'COUNT_DOWN_TRAIT';
