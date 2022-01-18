@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import style from '../styles/traitCount.module.scss';
-import { jsonTraits } from '../traitsData';
-import Trait from './Trait';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
+import style from '../styles/traitCount.module.scss';
+import Trait from './Trait';
+import { RootState } from '../store/reducers';
 export default function TraitCount() {
-    const [traits, setTraits] = useState(jsonTraits);
+    const [traits, setTraits] = useState([{ count: 0, name: '고물상' }]);
+
+    const { trait } = useSelector((state: RootState) => state.traitReducer);
+
+    useEffect(() => {
+        console.log('test');
+    }, [])
 
     return (
         <div className={style.container}>
