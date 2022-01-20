@@ -12,9 +12,9 @@ export default function Table() {
         <div className={style.table}>
             {dropsSection.map((_, i) => {
                 if (i < 7 || i > 13 && i < 21) {
-                    return <DropChampion key={i} styles={{ left: '30px'}} indexs={i}/>
+                    return <DropChampion key={i} styles={{ right: '30px'}} indexs={i}/>
                 }
-                return <DropChampion key={i} styles={{ right: '30px'}} indexs={i}/>
+                return <DropChampion key={i} styles={{ left: '30px'}} indexs={i}/>
             })}
 
             <div className={style.triangle}/>
