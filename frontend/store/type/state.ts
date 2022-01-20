@@ -72,3 +72,11 @@ export type TraitState = {
         '혁신가': number,
     },
 }
+
+export type NumberOfChampState = {
+    member: number,
+}
+
+export type NumberOfChamp = {
+    type: string,
+}

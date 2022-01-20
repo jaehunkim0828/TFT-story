@@ -6,12 +6,14 @@ import axios from 'axios';
 import style from '../styles/table.module.scss';
 import { RootState } from '../store/reducers';
 import { countUp } from '../store/actions/traitAct';
+import { countUpChamp } from '../store/actions/numberOfChampAct';
 
 
 
 export default function DropChampion({ styles, indexs }: { styles: object, indexs: number }) {
     const dispatch = useDispatch();
     const { image, id } = useSelector((state: RootState) => state.championImgReducer);
+    const { member } = useSelector((state: RootState) => state.numberOfChampReducer);
     const [isImage, setIsImage] = useState(false);
     const [boxImg, setBoxImg] = useState('');
 
@@ -27,6 +29,7 @@ export default function DropChampion({ styles, indexs }: { styles: object, index
         accept: 'champion',
         drop: async () => {
             await getchampionTraits();
+            dispatch(countUpChamp());
             setBoxImg(image);
             setIsImage(true);
         },
