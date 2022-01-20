@@ -1,3 +1,5 @@
+import { HYDRATE } from "next-redux-wrapper";
+
 import { COUNT_DOWN_TRAIT,COUNT_UP_TRAIT } from "../actions/actionType";
 import { TraitState, Trait  } from '../type/state';
 
@@ -41,6 +43,8 @@ export default function championImgReducer(state = initialState, action: Trait) 
             return state;
         case COUNT_UP_TRAIT:
             state.trait[action.payload] += 1
+            return state;
+        case HYDRATE:
             return state;
         default:
             return state;

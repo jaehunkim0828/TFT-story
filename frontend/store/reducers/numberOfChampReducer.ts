@@ -1,3 +1,5 @@
+import { HYDRATE } from "next-redux-wrapper";
+
 import { COUNT_DOWN_CHAMP, COUNT_UP_CHAMP } from "../actions/actionType";
 import { countDownChamp,countUpChamp } from '../actions/numberOfChampAct';
 import { NumberOfChamp, NumberOfChampState } from '../type/state';
@@ -10,6 +12,8 @@ export default function numberOfChampReducer(state = initialState, action: Numbe
             return { member: state.member + 1 };
         case COUNT_DOWN_CHAMP:
             return { member: state.member - 1 };
+        case HYDRATE:
+           return state; 
         default:
             return state;
     }
