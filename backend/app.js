@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import championRouter from './routes/champion.js';
+import cardRouter from './routes/card.js';
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/champion',championRouter);
+app.use('/card', cardRouter);
 app.get('/', (req, res, next) => {
     res.send('hello')
 })
