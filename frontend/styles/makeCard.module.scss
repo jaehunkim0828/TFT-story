@@ -5,3 +5,51 @@
   align-items: center;
   padding: 5% 0 0 0;
 }
+
+.mainName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deck {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nameList {
+  width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  height: 10rem;
+  justify-content: center;
+
+  .name {
+    background-color: rgb(185, 185, 185);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    height: 2.2rem;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(255, 145, 125);
+    }
+  }
+}
+
+@media (max-width: 1248px) {
+  .nameList {
+    width: 600px;
+  }
+}
+
+@media (max-width: 650px) {
+  .nameList {
+    width: 300px;
+  }
+}
