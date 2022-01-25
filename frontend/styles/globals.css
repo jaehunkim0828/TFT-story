@@ -17,6 +17,15 @@ a {
 
 .table-trait {
   display: flex;
-  width: 1200px;
+  width: 1000px;
   justify-content: space-between;
+}
+
+@media (max-width: 1248px) {
+  .table-trait {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
 }
