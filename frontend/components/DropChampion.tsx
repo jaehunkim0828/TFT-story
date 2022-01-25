@@ -41,7 +41,7 @@ export default function DropChampion({ styles, indexs }: { styles: object, index
     }), [image])
 
     return (
-        <div key={indexs}className={style.dropCard} style={{...styles,background: isImage ? `url(${boxImg}) 50% 50%` : 'gray' }}>
+        <div key={indexs}className={`${style.dropCard} ${style.dropImageSize}`} style={{...styles,backgroundImage: isImage ? `url(${boxImg})` : 'gray', backgroundColor: !isImage ?  'gray' : 'none'}}>
             <div ref={drop} className={style.dropChamp}>
                 {isOver && (
                     <div 

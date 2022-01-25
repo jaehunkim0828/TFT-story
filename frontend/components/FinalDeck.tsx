@@ -6,7 +6,7 @@ import style from '../styles/makeCard.module.scss';
 import Table from "./Table";
 import TraitCount from "./TraitCount";
 
-function FinalDeck() {
+function FinalDeck({ champions }: any) {
 
     return (
         <DndProvider backend={HTML5Backend}>
@@ -15,7 +15,7 @@ function FinalDeck() {
                     <TraitCount />
                     <Table />
                 </div>
-                <Champions />
+                <Champions champions={champions}/>
             </div>
         </DndProvider>
     );
