@@ -12,3 +12,7 @@ export interface CardItem {
         description: string
     }
 }
+
+export type Champions = {
+    
+}
