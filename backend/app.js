@@ -3,6 +3,7 @@ import cors from 'cors';
 
 import championRouter from './routes/champion.js';
 import cardRouter from './routes/card.js';
+import traitRouter from './routes/trait.js';
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use('/champion',championRouter);
 app.use('/card', cardRouter);
+app.use('/trait', traitRouter);
 app.get('/', (req, res, next) => {
     res.send('hello')
 })
