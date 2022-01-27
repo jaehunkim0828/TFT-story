@@ -15,6 +15,9 @@ function App({ Component, PageProp }: AppProps) {
 
 return (
         <div>
+            <head>
+                <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet"></link>
+            </head>
             {router.pathname !== '/' ? <NavBar /> : <div></div>}
             <Component {...PageProp}/>
         </div>
