@@ -1,66 +1,87 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { ReactText, useEffect, useState } from 'react';
+import Select, { StylesConfig } from 'react-select';
 
 import style from '../styles/makeCard.module.scss';
 
 export default function DeckInfo({ champions }: any) {
+    // lv3, lv4, lv5, lv6, lv7, augmented, title, images, description
 
-    const [deckName, setDeckName] = useState({
+    const [deckInfo, setDeckInfo] = useState({
         title: '',
         description: '',
+        argumented: '',
         main: '',
+        lv3: '',
+        lv4: '',
+        lv5: '',
+        lv6: '',
+        lv7: '',
+        images: '',
     });
 
-    const [finalChamps, setFinal] = useState([]);
+    const [mainChamp, setMainChamp] = useState('선택하기');
+    const [filterChamps, setfilteringChamps] = useState([]);
     const [isName, setIsName] = useState(false);
 
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value, name } = e.target;
-        setDeckName({
-            ...deckName,
+        setDeckInfo({
+            ...deckInfo,
             [name]: value,
         })
     }
 
-    useEffect(() =>  {
-        console.log('test');
-    }, [])
+    const onCheckImage = (info: any) => {
+        setDeckInfo({
+            ...deckInfo,
+            images: info.images
+        })
+        setMainChamp(info.name);
+    }
 
     useEffect(() => {
-        if (deckName.main !== '') {
+        if (deckInfo.main !== '') {
             const final = champions.map((champ: any) => {
-                if (champ.name.includes(deckName.main)) {
-                    console.log('test');
-                    return champ.name;
+                if (champ.name.includes(deckInfo.main)) {
+                    return champ;
                 }
                 return;
             })
-            console.log(deckName.main);
+            console.log(deckInfo.main);
             setIsName(true);
-            setFinal(final);
+            setfilteringChamps(final);
             return;
         }
         return setIsName(false);
-    }, [deckName.main])
+    }, [deckInfo.main])
+
+    useEffect(() => {
+
+    }, [])
 
 
     return (
         <div className={style.deck}>
-            <div>
-                <div>Title: </div>
-                <input 
-                    value={deckName.title}
+            <div className={style.contents}>
+                <div>덱 이름: </div>
+                <input
+                    autoComplete="off"
+                    className={style.inputs}
+                    value={deckInfo.title}
                     name="title"
                     onChange={onChange}
                 />
             </div>
-            <div>
-                <div>간단한 덱설명: </div>
-                <input 
-                    value={deckName.description}
+            <div className={`${style.contents} ${style.description}`}>
+                <div>덱 소개: </div>
+                <textarea
+                    autoComplete="off"
+                    className={`${style.inputs} ${style.descriptionInput}`}
+                    value={deckInfo.description}
                     name="description"
-                    onChange={onChange}
+                    onChange={(e) => onChange(e)}
                 />
             </div>
             {/* 
@@ -71,24 +92,29 @@ export default function DeckInfo({ champions }: any) {
                 이미지 tag -> button
             */}
             <div className={style.mainName}>
-                <div>메인 챔피언:</div>
-                <input 
-                    value={deckName.main}
-                    name="main"
-                    onChange={(e) => {
-                        onChange(e);
-                    }}
-                />
+                <div className={style.contents}>
+                    <div>메인 챔피언:</div>
+                    <input
+                        autoComplete="off"
+                        className={style.inputs}
+                        value={deckInfo.main}
+                        name="main"
+                        onChange={(e) => {
+                            onChange(e);
+                        }}
+                    />
+                    <div className={style.seletedChamp}>{mainChamp}</div>
+                </div>
                 <div className={style.nameList}>
-                    {isName ? finalChamps.map((champ: any, i: number) => {
+                    {isName ? filterChamps.map((champ: any, i: number) => {
                         if (champ) {
-                            return <button className={style.name} key={i}>{champ}</button>
+                            return <button onClick={() => onCheckImage(champ)} className={style.name} key={i}>{champ.name}</button>
                         }
                     }
                     )
                         :
                     champions.map((info: any, i: number) => {
-                        return <button className={style.name} key={i}>{info.name}</button>
+                        return <button onClick={() => onCheckImage(info)} className={style.name} key={i}>{info.name}</button>
                     })}
                 </div>
             </div>
@@ -99,8 +125,47 @@ export default function DeckInfo({ champions }: any) {
                 sugmented.map 이미지 펼쳐주기 
                 이미지 tag -> button
             */}
-            <div>증강체</div>
-            {/* 이건 좀 생각해보는걸로 아직은 */}
+            <div className={style.sugment}>
+                <Select 
+                    closeMenuOnSelect={false}
+                    isMulti
+                    options={[
+                        { value: '계산된 패배', label: '계산된 패배', color: '#00B8D9', isFixed: true },
+                        { value: '지배', label: '지배', color: '#0052CC' },
+                        { value: '아이템 꾸러미 I', label: '아이템 꾸러미 I', color: '#5243AA' },
+                        { value: '허수아비 전선', label: '허수아비 전선', color: '#FF5630', isFixed: true },
+                    ]}
+                    onChange={(e) => console.log(e)}
+                    className={style.select}
+                    placeholder='증강 1단계'
+                />
+                <Select 
+                    closeMenuOnSelect={false}
+                    isMulti
+                    options={[
+                        { value: '부익부', label: '부익부', color: '#00B8D9', isFixed: true },
+                        { value: '고대의 기록 보관소', label: '고대의 기록 보관소', color: '#0052CC' },
+                        { value: '대사 촉진제', label: '대사 촉진제', color: '#5243AA' },
+                        { value: '추방자 II', label: '추방자 II', color: '#FF5630', isFixed: true },
+                    ]}
+                    onChange={(e) => console.log(e)}
+                    className={style.select}
+                    placeholder='증강 2단계'
+                />
+                <Select 
+                    closeMenuOnSelect={false}
+                    isMulti
+                    options={[
+                        { value: '큰손', label: '큰손', color: '#00B8D9', isFixed: true },
+                        { value: '숲의 부적', label: '숲의 부적', color: '#0052CC' },
+                        { value: '추방자 III', label: '추방자 III', color: '#5243AA' },
+                        { value: '품격있는 쇼핑', label: '품격있는 쇼핑', color: '#FF5630', isFixed: true },
+                    ]}
+                    onChange={(e) => console.log(e)}
+                    className={style.select}
+                    placeholder='증강 1단계'
+                />
+            </div>
             <div>lv3</div>
             <div>lv4</div>
             <div>lv5</div>
