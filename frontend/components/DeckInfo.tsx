@@ -1,16 +1,26 @@
 import axios from 'axios';
 import React, { ReactText, useEffect, useState } from 'react';
-import Select, { StylesConfig } from 'react-select';
 
 import style from '../styles/makeCard.module.scss';
+import Sugmneted from './Sugmented';
 
-export default function DeckInfo({ champions }: any) {
+type Sugment = {
+    level1: object[],
+    level2: object[],
+    level3: object[],
+}
+
+export default function DeckInfo({ champions, sugmented }: any) {
     // lv3, lv4, lv5, lv6, lv7, augmented, title, images, description
 
     const [deckInfo, setDeckInfo] = useState({
         title: '',
         description: '',
-        argumented: '',
+        sugmented: {
+            level1: [],
+            level2: [],
+            level3: [],
+        },
         main: '',
         lv3: '',
         lv4: '',
@@ -23,7 +33,11 @@ export default function DeckInfo({ champions }: any) {
     const [mainChamp, setMainChamp] = useState('선택하기');
     const [filterChamps, setfilteringChamps] = useState([]);
     const [isName, setIsName] = useState(false);
-
+    const [sugment, setSugment] = useState<Sugment>({
+        level1: [],
+        level2: [],
+        level3: [],
+    })
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value, name } = e.target;
@@ -49,7 +63,6 @@ export default function DeckInfo({ champions }: any) {
                 }
                 return;
             })
-            console.log(deckInfo.main);
             setIsName(true);
             setfilteringChamps(final);
             return;
@@ -58,8 +71,40 @@ export default function DeckInfo({ champions }: any) {
     }, [deckInfo.main])
 
     useEffect(() => {
-
-    }, [])
+        const lv1: object[] = [];
+        const lv2: object[] = [];
+        const lv3: object[] = [];
+        
+        setSugment((prev: Sugment) => {
+            sugmented.map((item: { name: string, description: string, level: number}) => {
+                if (item.level === 1) {
+                    lv1.push({
+                        value: item.name,
+                        label: item.name
+                    })
+                    return;
+                }
+                if (item.level === 2) {
+                    lv2.push({
+                        value: item.name,
+                        label: item.name,
+                    })
+                    return;
+                }
+                lv3.push({
+                    value: item.name,
+                    label: item.name,
+                })
+            })
+            console.log(sugmented);
+            return {
+                ...prev,
+                level1: lv1,
+                level2: lv2,
+                level3: lv3,
+            }
+        });
+    }, [sugmented])
 
 
     return (
@@ -118,6 +163,7 @@ export default function DeckInfo({ champions }: any) {
                     })}
                 </div>
             </div>
+            <Sugmneted sugmented={sugment} deckInfo={deckInfo} setDeckInfo={setDeckInfo}/>
             {/* 
                 이미지는 db에서 불러오기 
                 path: /sugmented
@@ -125,47 +171,7 @@ export default function DeckInfo({ champions }: any) {
                 sugmented.map 이미지 펼쳐주기 
                 이미지 tag -> button
             */}
-            <div className={style.sugment}>
-                <Select 
-                    closeMenuOnSelect={false}
-                    isMulti
-                    options={[
-                        { value: '계산된 패배', label: '계산된 패배', color: '#00B8D9', isFixed: true },
-                        { value: '지배', label: '지배', color: '#0052CC' },
-                        { value: '아이템 꾸러미 I', label: '아이템 꾸러미 I', color: '#5243AA' },
-                        { value: '허수아비 전선', label: '허수아비 전선', color: '#FF5630', isFixed: true },
-                    ]}
-                    onChange={(e) => console.log(e)}
-                    className={style.select}
-                    placeholder='증강 1단계'
-                />
-                <Select 
-                    closeMenuOnSelect={false}
-                    isMulti
-                    options={[
-                        { value: '부익부', label: '부익부', color: '#00B8D9', isFixed: true },
-                        { value: '고대의 기록 보관소', label: '고대의 기록 보관소', color: '#0052CC' },
-                        { value: '대사 촉진제', label: '대사 촉진제', color: '#5243AA' },
-                        { value: '추방자 II', label: '추방자 II', color: '#FF5630', isFixed: true },
-                    ]}
-                    onChange={(e) => console.log(e)}
-                    className={style.select}
-                    placeholder='증강 2단계'
-                />
-                <Select 
-                    closeMenuOnSelect={false}
-                    isMulti
-                    options={[
-                        { value: '큰손', label: '큰손', color: '#00B8D9', isFixed: true },
-                        { value: '숲의 부적', label: '숲의 부적', color: '#0052CC' },
-                        { value: '추방자 III', label: '추방자 III', color: '#5243AA' },
-                        { value: '품격있는 쇼핑', label: '품격있는 쇼핑', color: '#FF5630', isFixed: true },
-                    ]}
-                    onChange={(e) => console.log(e)}
-                    className={style.select}
-                    placeholder='증강 1단계'
-                />
-            </div>
+            
             <div>lv3</div>
             <div>lv4</div>
             <div>lv5</div>
