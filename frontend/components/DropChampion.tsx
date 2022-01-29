@@ -17,7 +17,7 @@ export default function DropChampion({ styles, indexs }: { styles: object, index
     const [boxImg, setBoxImg] = useState('');
 
     const getchampionTraits = async () => {
-        return await axios.get(`http://localhost:8888/champion/${id}`)
+        return await axios.get(`http://localhost:8080/champion/${id}`)
         .then(({ data }) => {
             console.log(data);
             data.map((trait: string) => {

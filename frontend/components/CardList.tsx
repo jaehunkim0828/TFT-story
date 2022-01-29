@@ -10,7 +10,7 @@ export default function CardList() {
 
 
     const getCardList = async () => {
-        const cardList: CardLists = await axios.get('http://localhost:8888/card');
+        const cardList: CardLists = await axios.get('http://localhost:8080/card');
         setDecks(cardList.data);
     }
 
