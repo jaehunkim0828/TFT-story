@@ -9,15 +9,10 @@ const traitRouter = express.Router();
     // .get(async (req, res, next) => {
     //     const { id } = req.params;
     //     await db.execute('SELECT traitId FROM champion_trait WHERE championId=?', [id])
-    //     .then(result => res.status(200).send(result[0]))
+    //     .then(result => res.status(200).send(result[0]))r
     //     .catch(err => res.status(404).send({ message: 'not Found' }));
     // });
-traitRouter.route('/').post((req, res, next) => {
-    sugmented.map(async ({ name, des }) => {
-        const done = await db.execute('INSERT INTO sugmented (name, description) VALUES (?, ?)',[name, des]);
-
-        console.log(done);
-    })
+traitRouter.route('/').post(async (req, res, next) => {
     res.send('done');
 })
 .get((req, res, next) => {
