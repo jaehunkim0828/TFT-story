@@ -12,6 +12,11 @@
     justify-content: flex-end;
     align-items: flex-end;
     border-radius: 10px;
+    transition: transform 100ms ease-in;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     .cost {
       color: white;
