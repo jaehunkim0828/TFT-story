@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { ReactText, useEffect, useState } from 'react';
 
 import style from '../styles/makeCard.module.scss';
+import SemiDeck from './SemiDeck';
 import Sugmneted from './Sugmented';
 
 type Sugment = {
@@ -10,25 +11,7 @@ type Sugment = {
     level3: object[],
 }
 
-export default function DeckInfo({ champions, sugmented }: any) {
-    // lv3, lv4, lv5, lv6, lv7, augmented, title, images, description
-
-    const [deckInfo, setDeckInfo] = useState({
-        title: '',
-        description: '',
-        sugmented: {
-            level1: [],
-            level2: [],
-            level3: [],
-        },
-        main: '',
-        lv3: '',
-        lv4: '',
-        lv5: '',
-        lv6: '',
-        lv7: '',
-        images: '',
-    });
+export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }: any) {
 
     const [mainChamp, setMainChamp] = useState('선택하기');
     const [filterChamps, setfilteringChamps] = useState([]);
@@ -38,6 +21,8 @@ export default function DeckInfo({ champions, sugmented }: any) {
         level2: [],
         level3: [],
     })
+
+    const [championList, SetChampionList] = useState([]);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value, name } = e.target;
@@ -56,6 +41,7 @@ export default function DeckInfo({ champions, sugmented }: any) {
     }
 
     useEffect(() => {
+        console.log(deckInfo);
         if (deckInfo.main !== '') {
             const final = champions.map((champ: any) => {
                 if (champ.name.includes(deckInfo.main)) {
@@ -96,7 +82,6 @@ export default function DeckInfo({ champions, sugmented }: any) {
                     label: item.name,
                 })
             })
-            console.log(sugmented);
             return {
                 ...prev,
                 level1: lv1,
@@ -105,6 +90,13 @@ export default function DeckInfo({ champions, sugmented }: any) {
             }
         });
     }, [sugmented])
+
+    useEffect(() => {
+        const champList = champions.map(({ name }: { name: string } ) => {
+            return { value: name, label: name };
+        })
+        SetChampionList(champList);
+    }, [champions])
 
 
     return (
@@ -171,12 +163,7 @@ export default function DeckInfo({ champions, sugmented }: any) {
                 sugmented.map 이미지 펼쳐주기 
                 이미지 tag -> button
             */}
-            
-            <div>lv3</div>
-            <div>lv4</div>
-            <div>lv5</div>
-            <div>lv6</div>
-            <div>lv7</div>
+            <SemiDeck champions={championList} setDeckInfo={setDeckInfo} deckInfo={deckInfo}/>
         </div>
     )
 };
