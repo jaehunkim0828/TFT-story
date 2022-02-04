@@ -39,7 +39,7 @@ const initialState: TraitState = {
 export default function championImgReducer(state = initialState, action: Trait) {
     switch (action.type) {
         case COUNT_DOWN_TRAIT:
-            state.trait[action.payload] -= 1
+            state.trait[action.payload] > 0 ? state.trait[action.payload] -= 1 : state.trait[action.payload] = 0
             return state;
         case COUNT_UP_TRAIT:
             state.trait[action.payload] += 1

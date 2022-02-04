@@ -80,3 +80,7 @@ export type NumberOfChampState = {
 export type NumberOfChamp = {
     type: string,
 }
+
+export type DropValue = {
+    value: 'champ' | 'item' | '',
+}
