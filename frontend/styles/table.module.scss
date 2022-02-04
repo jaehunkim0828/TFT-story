@@ -1,5 +1,5 @@
 .table {
-  border: 2px solid black;
+  border: 1px solid black;
   width: 800px;
   height: 400px;
   margin-bottom: 2rem;
@@ -77,6 +77,20 @@
   background-size: 100%;
   position: relative;
   height: 84px;
+
+  .items {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .item {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: 0 0.1rem;
+    }
+  }
 }
 
 .path {
@@ -91,7 +105,6 @@
 
 @media (max-width: 1248px) {
   .table {
-    border: 2px solid black;
     width: 600px;
     height: 300px;
     margin-bottom: 2rem;
@@ -132,7 +145,7 @@
     .overCurser {
       width: 100%;
       height: 150%;
-      background-color: rgb(150, 150, 150);
+      opacity: 0.5;
 
       &::after {
         content: "";
@@ -142,6 +155,7 @@
         height: 0;
         border-left: 30px solid transparent;
         border-right: 30px solid transparent;
+        opacity: 1;
       }
 
       &::before {
@@ -155,6 +169,7 @@
         border-right: 30px solid transparent;
         border-top: 15px solid rgb(150, 150, 150);
         z-index: 1;
+        opacity: 1;
       }
     }
   }
@@ -164,12 +179,18 @@
     background-size: 100%;
     position: relative;
     height: 63px;
+
+    .items {
+      .item {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
   }
 }
 
 @media (max-width: 650px) {
   .table {
-    border: 2px solid black;
     width: 300px;
     height: 150px;
     margin-bottom: 1rem;
@@ -241,5 +262,12 @@
     margin: 0 1%;
     background-size: 100%;
     height: 31.5px;
+
+    .items {
+      .item {
+        width: 0.5rem;
+        height: 0.5rem;
+      }
+    }
   }
 }

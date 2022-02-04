@@ -102,14 +102,36 @@
   }
 }
 
+.btnContainer {
+  .btn {
+    border: none;
+    background-color: white;
+    color: tomato;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+    &:hover {
+      background-color: rgb(185, 185, 185);
+    }
+  }
+}
+
 @media (max-width: 1248px) {
   .nameList {
     width: 600px;
+  }
+
+  .btn {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 650px) {
   .nameList {
     width: 300px;
+  }
+
+  .btn {
+    font-size: 0.8rem;
   }
 }
