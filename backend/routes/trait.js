@@ -1,7 +1,7 @@
 import express from "express";
 
 import { db } from '../db.js';
-import { sugmented } from "../sugmented.js";
+import { item } from '../items.js';
 
 const traitRouter = express.Router();
 
@@ -15,9 +15,7 @@ const traitRouter = express.Router();
 traitRouter.route('/').post(async (req, res, next) => {
     res.send('done');
 })
-.get((req, res, next) => {
-    res.send('trait')
-})
+.get()
 
 
 export default traitRouter;
