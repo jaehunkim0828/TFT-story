@@ -1,7 +1,7 @@
 import { db } from '../db.js';
 
 export async function selectedChampion() {
-    return db.execute('SELECT id, cost, images, name FROM champions');
+    return db.execute('SELECT id, cost, images, name, thumb FROM champions');
 }
 
 export async function findTraitName(id) {
