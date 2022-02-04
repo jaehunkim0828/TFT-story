@@ -1,35 +1,29 @@
-import { stringify } from 'querystring';
-import { useEffect, useState } from 'react';
-import Select, { StylesConfig } from 'react-select';
+import { useEffect } from 'react';
+import Select from 'react-select';
 
 import style from '../styles/makeCard.module.scss';
 
-export default function Sugmneted({ sugmented, setDeckInfo, deckInfo }: any) {
+export default function Sugmneted({ augmented, setDeckInfo, deckInfo }: any) {
 
-    const changeSugmented = (e: any) => {
+    const changeaugmented = (e: any, i: number) => {
 
         setDeckInfo({
             ...deckInfo,
-            sugmented: {
-                ...deckInfo.sugmented,
-                level1: e
+            augmented: {
+                ...deckInfo.augmented,
+                [`level${i}`]: e
             }
         })
     }
-
-    useEffect(() => {
-        console.log(sugmented);
-    }, [sugmented])
 
     return (
         <div className={style.sugment}>
                 <Select 
                     closeMenuOnSelect={false}
                     isMulti
-                    options={sugmented.level1}
+                    options={augmented.level1}
                     onChange={(e) => {
-                        changeSugmented(e);
-                        console.log(deckInfo);
+                        changeaugmented(e, 1);
                     }}
                     className={style.select}
                     placeholder='증강 1단계'
@@ -37,10 +31,9 @@ export default function Sugmneted({ sugmented, setDeckInfo, deckInfo }: any) {
                 <Select 
                     closeMenuOnSelect={false}
                     isMulti
-                    options={sugmented.level2}
+                    options={augmented.level2}
                     onChange={(e) => {
-                        changeSugmented(e);
-                        console.log(deckInfo);
+                        changeaugmented(e, 2);
                     }}
                     className={style.select}
                     placeholder='증강 2단계'
@@ -48,13 +41,12 @@ export default function Sugmneted({ sugmented, setDeckInfo, deckInfo }: any) {
                 <Select 
                     closeMenuOnSelect={false}
                     isMulti
-                    options={sugmented.level3}
+                    options={augmented.level3}
                     onChange={(e) => {
-                        changeSugmented(e);
-                        console.log(deckInfo);
+                        changeaugmented(e, 3);
                     }}
                     className={style.select}
-                    placeholder='증강 1단계'
+                    placeholder='증강 3단계'
                 />
             </div>
     )

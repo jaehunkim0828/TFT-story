@@ -1,22 +1,21 @@
-import axios from 'axios';
-import React, { ReactText, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import style from '../styles/makeCard.module.scss';
 import SemiDeck from './SemiDeck';
-import Sugmneted from './Sugmented';
+import Augmneted from './Augmented';
 
-type Sugment = {
+type Augment = {
     level1: object[],
     level2: object[],
     level3: object[],
 }
 
-export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }: any) {
+export default function DeckInfo({ champions, augmented, deckInfo, setDeckInfo }: any) {
 
     const [mainChamp, setMainChamp] = useState('선택하기');
     const [filterChamps, setfilteringChamps] = useState([]);
     const [isName, setIsName] = useState(false);
-    const [sugment, setSugment] = useState<Sugment>({
+    const [augment, setAugment] = useState<Augment>({
         level1: [],
         level2: [],
         level3: [],
@@ -35,13 +34,13 @@ export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }
     const onCheckImage = (info: any) => {
         setDeckInfo({
             ...deckInfo,
-            images: info.images
+            images: info.thumb
         })
         setMainChamp(info.name);
+        console.log(info.thumb);
     }
 
     useEffect(() => {
-        console.log(deckInfo);
         if (deckInfo.main !== '') {
             const final = champions.map((champ: any) => {
                 if (champ.name.includes(deckInfo.main)) {
@@ -61,8 +60,8 @@ export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }
         const lv2: object[] = [];
         const lv3: object[] = [];
         
-        setSugment((prev: Sugment) => {
-            sugmented.map((item: { name: string, description: string, level: number}) => {
+        setAugment((prev: Augment) => {
+            augmented.map((item: { name: string, description: string, level: number}) => {
                 if (item.level === 1) {
                     lv1.push({
                         value: item.name,
@@ -89,7 +88,7 @@ export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }
                 level3: lv3,
             }
         });
-    }, [sugmented])
+    }, [augmented])
 
     useEffect(() => {
         const champList = champions.map(({ name }: { name: string } ) => {
@@ -97,7 +96,6 @@ export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }
         })
         SetChampionList(champList);
     }, [champions])
-
 
     return (
         <div className={style.deck}>
@@ -121,13 +119,6 @@ export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }
                     onChange={(e) => onChange(e)}
                 />
             </div>
-            {/* 
-                이미지는 db에서 불러오기 
-                path: /lvimage
-                method: get
-                lv.map 이미지 펼쳐주기 
-                이미지 tag -> button
-            */}
             <div className={style.mainName}>
                 <div className={style.contents}>
                     <div>메인 챔피언:</div>
@@ -147,22 +138,14 @@ export default function DeckInfo({ champions, sugmented, deckInfo, setDeckInfo }
                         if (champ) {
                             return <button onClick={() => onCheckImage(champ)} className={style.name} key={i}>{champ.name}</button>
                         }
-                    }
-                    )
+                    })
                         :
                     champions.map((info: any, i: number) => {
                         return <button onClick={() => onCheckImage(info)} className={style.name} key={i}>{info.name}</button>
                     })}
                 </div>
             </div>
-            <Sugmneted sugmented={sugment} deckInfo={deckInfo} setDeckInfo={setDeckInfo}/>
-            {/* 
-                이미지는 db에서 불러오기 
-                path: /sugmented
-                method: get
-                sugmented.map 이미지 펼쳐주기 
-                이미지 tag -> button
-            */}
+            <Augmneted augmented={augment} deckInfo={deckInfo} setDeckInfo={setDeckInfo}/>
             <SemiDeck champions={championList} setDeckInfo={setDeckInfo} deckInfo={deckInfo}/>
         </div>
     )
