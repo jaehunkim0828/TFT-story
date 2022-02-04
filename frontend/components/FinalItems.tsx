@@ -11,7 +11,6 @@ export default function FinalItems({deckInfo, setDeckInfo}: any) {
         deckInfo.final.map(async(champ: string) => {
             const id = champ.split(' ')[1];
             const champData = await axios.get(`http://localhost:8080/${id}`);
-            console.log(champData);
         })
     }
 

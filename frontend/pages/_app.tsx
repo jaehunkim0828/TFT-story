@@ -9,10 +9,6 @@ import { useEffect } from "react";
 function App({ Component, PageProp }: AppProps) {
     const router = useRouter();
 
-    useEffect(() => {
-        console.log(router.pathname);
-    }, [])
-
 return (
         <div>
             <head>

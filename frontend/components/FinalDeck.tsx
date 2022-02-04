@@ -9,30 +9,33 @@ import { useEffect, useState } from 'react';
 import { RootState } from '../store/reducers';
 import { useSelector } from 'react-redux';
 import FinalItems from './FinalItems';
+import Items from './Items';
 
 
-function FinalDeck({ champions, deckInfo, setDeckInfo }: any) {
-    const [isItem, setIsItem] = useState(false);
-
+function FinalDeck({ champions, deckInfo, setDeckInfo, items }: any) {
+    
     const { member } = useSelector((state: RootState) => state.numberOfChampReducer);
+    const [ isChamp, setIsChamp ] = useState(true);
+
+    const onClick = (data: string): void => {
+        data === 'champ' ? setIsChamp(true) : setIsChamp(false);
+    }
 
     useEffect(() => {
-        if (member > 0) {
-            setIsItem(true);
-            return;
-        }
-        setIsItem(false);
     }, [member])
 
     return (
         <DndProvider backend={HTML5Backend}>
             <div className={style.finalContainer}>
                 <div className="table-trait">
-                    <TraitCount />
-                    <Table deckInfo={deckInfo} setDeckInfo={setDeckInfo} setIsItem={setIsItem}/>
+                    <TraitCount deckInfo={deckInfo} setDeckInfo={setDeckInfo} />
+                    <Table deckInfo={deckInfo} setDeckInfo={setDeckInfo} />
                 </div>
-                <Champions champions={champions}/>
-                {isItem && <FinalItems deckInfo={deckInfo} setDeckinfo={setIsItem}/>}
+                <div className={style.btnContainer}>
+                    <button className={style.btn} onClick={() => onClick('champ')}>챔피언</button>
+                    <button className={style.btn} onClick={() => onClick('item')}>아이템</button>
+                </div>
+                { isChamp ? <Champions champions={champions}/> : <Items items={items}/>}
             </div>
         </DndProvider>
     );
