@@ -19,7 +19,7 @@ export default function CardList() {
     }, [])
     return (
         <div className={style.cardList}>
-            {decks.map((deck, i) => <Card key={i} deck={deck}/>)}
+            {decks.map((deck, i) => <Card key={i} deck={deck} i={i}/>)}
         </div>
     )
 }

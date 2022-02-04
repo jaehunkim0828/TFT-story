@@ -3,14 +3,14 @@ import style from '../styles/cardList.module.scss';
 
 import { CardItem} from '../type';
 
-export default function Card({key, deck}: CardItem) {
+export default function Card({i, deck}: CardItem) {
     return (
-        <div className={style.card} key={key}>
+        <div className={style.card} key={i}>
             <img className={style.cardImage}src={deck.image} alt='deck-image'/>
             <div>
                 <div className={style.name}>{deck.name}</div>
                 <div className={style.trait}>
-                    {deck.trait.split(' , ').map((item, i) => <div key={i}>#{item}</div>)}
+                    {deck.trait.split(' > ').map((item, i) => <div key={i}>#{item}</div>)}
                 </div>
                 <div>설명: {deck.description}</div>
             </div>
