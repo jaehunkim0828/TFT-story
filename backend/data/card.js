@@ -1,16 +1,92 @@
 import { db } from '../db.js';
 
-export async function insertThumb(augmented, lv3, lv4, lv5, lv6, lv7, finalDeck) {
-    return db.execute(
+export async function insertCard(augmented, lv3, lv4, lv5, lv6, lv7, final, items, traits) {
+    const lvToString = (lv) => {
+        return lv.reduce((acc, obj, index, arr) => {
+            if (index === arr.length - 1) return `${acc}${obj.value}`;
+            return `${acc}${obj.value} `;
+        }, '');
+    }
+
+    const finalToStirng = (final) => {
+        const keys = Object.keys(final);
+        const values = Object.values(final);
+        return keys.reduce((acc, key, index, arr) => {
+            if (index === arr.length - 1) {
+                return `${acc}${key} ${values[index]}`
+            }
+            return `${acc}${key} ${values[index]} > `
+        }, '');
+    }
+    //19 19 > 20 12 > 33 21
+
+    const traitToString = (trait) => {
+        const keys = Object.keys(trait);
+        const values = Object.values(trait);
+        return keys.reduce((acc, key, index, arr) => {
+            if (index === arr.length - 1) {
+                return `${acc}${key} ${values[index]}`
+            }
+            return `${acc}${key} ${values[index]} > `
+        }, '');
+    }
+    // 고물상 1 > 아카데미 2 > 봉쇄자 1
+
+    const augumentedToString = (aug) => {
+        const values = Object.values(aug);
+        return values.reduce((acc, level, index, arr) => {
+            const augment = level.reduce((ac, { value }, j, array) => {
+                if (j === array.length -1 ) return `${ac}${value}`
+                return `${ac}${value} , `
+            },'')
+            if (index === arr.length - 1) {
+                return `${acc}${augment}`
+            }
+            return `${acc}${augment} > `
+        }, '');
+    }
+
+    // 계산된 패배 , 뭐 , 뭐2 , 뭐3 > 부익부 , 뭐 , 뭐2 , 뭐3 > 레벨 업
+
+    const itemToString = (item) => {
+        const keys = Object.keys(item);
+        const values = Object.values(item);
+        return keys.reduce((acc, key, index, arr) => {
+            const augment = values[index].reduce((ac, value, j, array) => {
+                if (j === array.length -1 ) return `${ac}${value}`
+                return `${ac}${value} , `
+            },`${key} : `)
+            if (index === arr.length - 1) {
+                return `${acc}${augment}`
+            }
+            return `${acc}${augment} > `
+        }, '');
+    }
+
+    return await db.execute(
         'INSERT INTO card (augmented, level3, level4, level5, level6, level7, champions, traits, items) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    , [augmented, lv3, lv4, lv5, lv6, lv7, finalDeck.champions, finalDeck.traits, finalDeck.items]);
+    , [augumentedToString(augmented), lvToString(lv3), lvToString(lv4), lvToString(lv5), lvToString(lv6), lvToString(lv7), finalToStirng(final), traitToString(traits), itemToString(items)]);
 }
 
-export async function insertCard(name, finalDeck, image, description, cardId) {
-    return db.execute('INSERT INTO card_thumb (name, trait, image, description, card_id) VALUES (?, ?, ?, ?, ?)'
-        , [name, finalDeck.traits, image, description, cardId]);
+export async function insertThumb(title, traits, images, description, cardId, password) {
+    const traitToString = (trait) => {
+        const keys = Object.keys(trait);
+        return keys.reduce((acc, key, index, arr) => {
+            if (index === arr.length - 1) {
+                return `${acc}${key}`
+            }
+            return `${acc}${key} > `
+        }, '');
+    }
+
+    console.log(title, traits, images, description,cardId, password ,traitToString(traits));
+
+    // 고물상 > 아카데미 > 봉쇄자
+
+    return await db.execute('INSERT INTO card_thumb (name, trait, image, description, card_id, password) VALUES (?, ?, ?, ?, ?, ?)'
+        , [title, traitToString(traits), images, description, cardId, password]);
 }
 
 export async function seletedcardThumb() {
-    return db.execute('SELECT * FROM card_thumb');
+    return await db.execute('SELECT * FROM card_thumb');
 }
