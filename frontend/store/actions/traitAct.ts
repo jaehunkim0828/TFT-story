@@ -1,4 +1,4 @@
-import { COUNT_DOWN_TRAIT, COUNT_UP_TRAIT } from "./actionType";
+import { COUNT_DOWN_TRAIT, COUNT_UP_TRAIT, RESET_TRAIT } from "./actionType";
 
 export const countUp = (trait: string) => {
     return {
@@ -11,5 +11,11 @@ export const countDown = (trait: string) => {
     return {
         type: COUNT_DOWN_TRAIT,
         payload: trait
+    }
+}
+
+export const countReset = () => {
+    return {
+        type: RESET_TRAIT,
     }
 }

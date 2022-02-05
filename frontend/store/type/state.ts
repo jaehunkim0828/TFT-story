@@ -84,3 +84,20 @@ export type NumberOfChamp = {
 export type DropValue = {
     value: 'champ' | 'item' | '',
 }
+
+export type DeckMake = {
+    count: number,
+}
+
+export type DeckMakeAct = {
+    type: string,
+}
+
+export type CurrentDeckAct = {
+    type: string,
+    payload: number,
+}
+
+export type CurrentDeck = {
+    id: number,
+}
