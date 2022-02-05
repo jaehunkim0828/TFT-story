@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { RootState } from '../store/reducers';
 import style from '../styles/traitCount.module.scss';
 import Trait from './Trait';
-import { RootState } from '../store/reducers';
 
 type Traits = {
     name: string,
@@ -18,6 +18,7 @@ export default function TraitCount({ deckInfo, setDeckInfo }: any) {
 
     const { member } = useSelector((state: RootState) => state.numberOfChampReducer);
     const { trait } = useSelector((state: RootState) => state.traitReducer);
+    const { count } = useSelector((state: RootState) => state.saveDeckReducer);
 
     const traitToArray = (trait: { [key in string]: number }) => {
         const keys = Object.keys(trait);
@@ -40,17 +41,15 @@ export default function TraitCount({ deckInfo, setDeckInfo }: any) {
 
     useEffect(() => {
         setTraits(traitToArray(trait));
-        console.log(traits);
     }, [member]);
 
     useEffect(() => {
         insertDectInfo(traits);
-        console.log('test');
     }, [traits]);
 
-    // useEffect(() => {
-    //     setTraits(initialTraits);
-    // }, [deckInfo])
+    useEffect(() => {
+        setTraits(initialTraits);
+    }, [count])
 
     return (
         <div className={style.container}>
