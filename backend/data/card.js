@@ -79,8 +79,6 @@ export async function insertThumb(title, traits, images, description, cardId, pa
         }, '');
     }
 
-    console.log(title, traits, images, description,cardId, password ,traitToString(traits));
-
     // 고물상 > 아카데미 > 봉쇄자
 
     return await db.execute('INSERT INTO card_thumb (name, trait, image, description, card_id, password) VALUES (?, ?, ?, ?, ?, ?)'
@@ -89,4 +87,12 @@ export async function insertThumb(title, traits, images, description, cardId, pa
 
 export async function seletedcardThumb() {
     return await db.execute('SELECT * FROM card_thumb');
+}
+
+export async function seletedCard(id) {
+    return await db.execute('SELECT * FROM card WHERE id=?', [id]);
+}
+
+export async function seletedThumb(id) {
+    return await db.execute('SELECT * FROM card_thumb WHERE id=?', [id]);
 }

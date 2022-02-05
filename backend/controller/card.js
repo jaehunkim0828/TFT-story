@@ -23,13 +23,26 @@ export async function makeDeck (req, res, next) {
             traits,
             main, // { 고물상: 1, 아카데미: 2, 봉쇄자: 1 }
         } = req.body;
-        console.log(req.body);
 
         const insertcard = await cardRepository.insertCard(augmented, lv3, lv4, lv5, lv6, lv7, final, items, traits);
         const cardId = insertcard[0].insertId;
-        const insertcardThumb = await cardRepository.insertThumb(title, traits, images, description, cardId, password);
-        res.status(201).send(insertcardThumb);
+        console.log(cardId);
+        await cardRepository.insertThumb(title, traits, images, description, cardId, password);
+        res.status(201).send({ message: '만들기 성공!' });
     } catch(err) {
+        console.log(err);
         res.status(404).send(err);
     }
+}
+
+export async function getCardId (req, res, next) {
+    const { id } = req.params;
+    const card = await cardRepository.seletedCard(id);
+    res.send(card[0]);
+}
+
+export async function getThumbId (req, res, next) {
+    const { id } = req.params;
+    const thumb = await cardRepository.seletedThumb(id);
+    res.send(thumb[0]);
 }
