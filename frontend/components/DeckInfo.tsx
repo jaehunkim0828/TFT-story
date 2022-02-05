@@ -37,7 +37,6 @@ export default function DeckInfo({ champions, augmented, deckInfo, setDeckInfo }
             images: info.thumb
         })
         setMainChamp(info.name);
-        console.log(info.thumb);
     }
 
     useEffect(() => {
