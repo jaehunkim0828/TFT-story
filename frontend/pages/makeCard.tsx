@@ -2,19 +2,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 
 import DeckInfo from "../components/DeckInfo";
 import FinalDeck from "../components/FinalDeck";
 import style from '../styles/makeCard.module.scss';
+import { countUpDeckMake } from '../store/actions/saveDeck';
+import { RootState } from '../store/reducers';
+import { countReset } from "../store/actions/traitAct";
 
 export default function MakeCard() {
     const router = useRouter();
+    const dispatch = useDispatch();
+    const { count } = useSelector((state: RootState) => state.saveDeckReducer);
 
     const [champions, setChampion] = useState<object[]>([]);
     const [augmented, setaugmented] = useState<object[]>([]);
     const [items, setItems] = useState<object[]>([]);
 
-    // lv3, lv4, lv5, lv6, lv7, augmented, title, images, description
     const initialDeckInfo = {
         title: '',
         description: '',
@@ -54,16 +59,19 @@ export default function MakeCard() {
     }
 
     const save = async () => {
-        const password = window.prompt('덱 비밀번호를 입력해주세요. 4자리', '1234');
-        if (password && password.length === 4) {
-            deckInfo.password = password;
-            const saveData = await axios.post('http://localhost:8080/card', deckInfo);
-            console.log(saveData);
-            router.push('/main');
-            setDeckInfo(initialDeckInfo);
+        try{
+            const password = window.prompt('덱 비밀번호를 입력해주세요. 4자리', '1234');
+            if (password && password.length === 4) {
+                deckInfo.password = password;
+                await axios.post('http://localhost:8080/card', deckInfo);
+                dispatch(countUpDeckMake());
+                router.push('/main');
+                return;
+            }
             return;
+        } catch(error: any) {
+            window.alert(error);
         }
-        return;
     }
 
     useEffect(() => {
@@ -72,11 +80,15 @@ export default function MakeCard() {
         getItem();
     }, [])
 
+    useEffect(() => {
+        setDeckInfo(initialDeckInfo);
+        dispatch(countReset());
+    }, [count])
+
     return (
         <div className={style.container}>
             <DeckInfo champions={champions} augmented={augmented} deckInfo={deckInfo} setDeckInfo={setDeckInfo}/>
             <FinalDeck champions={champions} deckInfo={deckInfo} setDeckInfo={setDeckInfo} items={items}/>
-            {/* 버튼 누르면 redux 와 deckinfo data 삭제하기 */}
             <Button 
                 text={'저장하기'} 
                 onClick={save}
