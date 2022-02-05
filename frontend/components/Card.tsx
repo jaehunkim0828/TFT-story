@@ -1,11 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
-import style from '../styles/cardList.module.scss';
+import { useRouter } from 'next/router';
 
-import { CardItem} from '../type';
+import style from '../styles/cardList.module.scss';
+import { CardItem } from '../type';
 
 export default function Card({i, deck}: CardItem) {
+    const router = useRouter();
+
+
+    const goCardInfo = () => {
+        localStorage.setItem('cardId', JSON.stringify({ card: deck.card_id, thumb: deck.id }));
+        router.push('/cardInfo');
+    }
+
     return (
-        <div className={style.card} key={i}>
+        <div 
+            className={style.card} 
+            key={i}
+            onClick={() => goCardInfo()}
+        >
             <img className={style.cardImage}src={deck.image} alt='deck-image'/>
             <div>
                 <div className={style.name}>{deck.name}</div>
