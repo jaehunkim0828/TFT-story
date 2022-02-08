@@ -90,8 +90,8 @@ export default function DeckInfo({ champions, augmented, deckInfo, setDeckInfo }
     }, [augmented])
 
     useEffect(() => {
-        const champList = champions.map(({ name }: { name: string } ) => {
-            return { value: name, label: name };
+        const champList = champions.map(({ id, name }: { id: number, name: string } ) => {
+            return { value: id, label: name };
         })
         SetChampionList(champList);
     }, [champions])
