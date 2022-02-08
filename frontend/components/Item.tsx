@@ -20,7 +20,7 @@ export default function Item({ item }: any) {
 
     useEffect(() => {
         if (isDragging) {
-            dispatch(seleteItem([item.image, item.id]));
+            dispatch(seleteItem([item.image, item.id, item.name]));
             dispatch(changeValue('item'));
         }
     }, [isDragging]);
