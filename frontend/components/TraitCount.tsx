@@ -21,10 +21,19 @@ export default function TraitCount({ deckInfo, setDeckInfo }: any) {
     const { count } = useSelector((state: RootState) => state.saveDeckReducer);
 
     const traitToArray = (trait: { [key in string]: number }) => {
+    
         const keys = Object.keys(trait);
         const values = Object.values(trait);
         return keys.map((name, i) => { 
             return {'name': name, 'count':  values[i]};
+        }).sort((a: { count: number }, b: { count: number }) => {
+            if (a.count > b.count) {
+                return -1;
+              }
+              if (a.count < b.count) {
+                return 1;
+              }
+              return 0;
         });
     }
 
