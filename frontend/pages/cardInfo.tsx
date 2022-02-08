@@ -2,13 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router";
 
-import { RootState } from '../store/reducers';
+import SemiChamps from "../components/SemiChamps";
+import CardAugmented from "../components/CardAugmented";
+import SemiTraits from "../components/SemiTraits";
 
 export default function CardInfo() {
     const router = useRouter();
 
     const initialCardInfo = {
-        argumented: '',
+        augmented: '',
         champions: '',
         items: '',
         level3: '',
@@ -28,13 +30,16 @@ export default function CardInfo() {
 
     const [cardInfo, setInfo] = useState(initialCardInfo);
     const [thumbInfo, setThumbInfo] = useState(initialThumbInfo);
+    const [champions, setChampions] = useState<object[]>([]);
 
     const getIdDeckInfo = async () => {
         const cardIds = localStorage.getItem('cardId');
         if (!cardIds) return router.push('/main');
         const { card, thumb } = JSON.parse(cardIds);
+        const championsData = await axios.get(`http://localhost:8080/champion`);
         const cardData = await axios.get(`http://localhost:8080/card/${card}`);
         const thumbData = await axios.get(`http://localhost:8080/card/thumb/${thumb}`);
+        setChampions(championsData.data);
         setInfo(cardData.data[0]);
         setThumbInfo(thumbData.data[0]);
     }
@@ -46,7 +51,15 @@ export default function CardInfo() {
     return (
         <div>
             <div>{thumbInfo.name}</div>
+            <div>{thumbInfo.description}</div>
             <div>{cardInfo.traits}</div>
+            <SemiTraits traits={cardInfo.traits} />
+            <CardAugmented augmented={cardInfo.augmented}/>
+            <SemiChamps champions={champions} level={cardInfo.level3} name={'레벨 3'}/>
+            <SemiChamps champions={champions} level={cardInfo.level4} name={'레벨 4'}/>
+            <SemiChamps champions={champions} level={cardInfo.level5} name={'레벨 5'}/>
+            <SemiChamps champions={champions} level={cardInfo.level6} name={'레벨 6'}/>
+            <SemiChamps champions={champions} level={cardInfo.level7} name={'레벨 7'}/>
         </div>
     )
 }
