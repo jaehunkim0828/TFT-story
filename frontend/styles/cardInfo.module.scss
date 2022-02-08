@@ -1,0 +1,17 @@
+.levelContainer {
+  display: flex;
+
+  .levelImage {
+    width: 3rem;
+    height: 3rem;
+    margin: 0.2rem;
+  }
+}
+
+.sugmentedInfo {
+  display: flex;
+
+  .sugmenteds {
+    display: flex;
+  }
+}
