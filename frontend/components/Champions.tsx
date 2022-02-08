@@ -9,7 +9,7 @@ export default function Champions({ champions }: any) {
 
     return (
         <div className={style.championsCards}>
-            {champions.map((champ: any, i: number) => {
+            {champions.sort((a: any, b: any) => a.cost - b.cost).map((champ: any, i: number) => {
                 return <Champion key={i} index={i} champ={champ} />
             })}
         </div>
