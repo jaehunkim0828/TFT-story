@@ -1,7 +1,7 @@
 import express from "express";
 
 import { db } from '../db.js';
-import { item } from '../items.js';
+import { chTr } from '../traits.js';
 
 const traitRouter = express.Router();
 
@@ -12,10 +12,17 @@ const traitRouter = express.Router();
     //     .then(result => res.status(200).send(result[0]))r
     //     .catch(err => res.status(404).send({ message: 'not Found' }));
     // });
+    //return await db.execute('INSERT INTO traits (name, image) VALUES (?, ?)', [ob.name, ob.image]);
 traitRouter.route('/').post(async (req, res, next) => {
     res.send('done');
 })
-.get()
+
+traitRouter.route('/:name').get(async (req, res, next) => {
+    const {name} = req.params;
+    const id = await db.execute('SELECT id FROM traits WHERE name=?', [name]);
+
+    res.send(id[0][0]);
+})
 
 
 export default traitRouter;
