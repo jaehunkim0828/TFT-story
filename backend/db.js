@@ -1,7 +1,7 @@
 import mysql from 'mysql2';
 
 const pool = mysql.createPool({
-    host: 'localhost',
+    host: '15.165.15.185',
     user: 'root',
     database: 'tft_db',
     password: 'gkfajsl132!'

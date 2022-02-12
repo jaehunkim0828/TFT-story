@@ -26,7 +26,7 @@ export default function DropChampion({ styles, indexs, setDeckInfo, deckInfo }: 
     const [itemSinerge, setItemSinerge] = useState<string[]>([]);
 
     const getchampionTraits = async () => {
-        return await axios.get(`http://localhost:8080/champion/traits/${id}`)
+        return await axios.get(`http://15.165.15.185:8080/champion/traits/${id}`)
         .then(({ data }) => {
             const values: number[] = Object.values(deckInfo.final);
             if (values.filter((champId: number) => champId === id).length) {
@@ -62,7 +62,7 @@ export default function DropChampion({ styles, indexs, setDeckInfo, deckInfo }: 
     const removeChampionTraits = async () => {
         const values: number[] = Object.values(deckInfo.final);
         if (values.filter((value: number) => value === deckInfo.final[indexs]).length < 2) {
-            await axios.get(`http://localhost:8080/champion/traits/${deckInfo.final[indexs]}`)
+            await axios.get(`http://15.165.15.185:8080/champion/traits/${deckInfo.final[indexs]}`)
             .then(({ data }) => {
                 data.map((trait: string) => {
                     dispatch(countDown(trait));
