@@ -1,5 +1,7 @@
-import { DndProvider, useDrag } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { isMobile } from 'react-device-detect';
 
 import Champions from "./Champions";
 import style from '../styles/makeCard.module.scss';
@@ -25,7 +27,7 @@ function FinalDeck({ champions, deckInfo, setDeckInfo, items }: any) {
     }, [member])
 
     return (
-        <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={!isMobile ? HTML5Backend :  TouchBackend} options={{ enableMouseEvents: true }}>
             <div className={style.finalContainer}>
                 <div className="table-trait">
                     <TraitCount deckInfo={deckInfo} setDeckInfo={setDeckInfo} />
@@ -42,3 +44,4 @@ function FinalDeck({ champions, deckInfo, setDeckInfo, items }: any) {
 }
 
 export default FinalDeck;
+
