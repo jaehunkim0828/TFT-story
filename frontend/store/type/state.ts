@@ -1,6 +1,6 @@
 export type SelectImg = {
     image: string,
-    name: string,
+    name?: string,
     id: number, 
 }
 
@@ -29,7 +29,7 @@ export type Trait = {
     '대식가' |
     '돌연변이' |
     '마법공학' |
-    '범죄조직' |
+    '범죄도시' |
     '사교계' |
     '시계태엽' |
     '연미복' |
@@ -61,7 +61,7 @@ export type TraitState = {
         '대식가': number,
         '돌연변이': number,
         '마법공학': number,
-        '범죄조직': number,
+        '범죄도시': number,
         '사교계': number,
         '시계태엽': number,
         '연미복': number,
