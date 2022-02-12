@@ -6,11 +6,8 @@ import SemiChamps from "../components/SemiChamps";
 import CardAugmented from "../components/CardAugmented";
 import SemiTraits from "../components/SemiTraits";
 import style from '../styles/cardInfo.module.scss';
-import SemiDesc from "../components/SemiDesc";
 import DropDown from "../components/DropDown";
 import httpServer, { http } from "../server";
-import CardFinalDeck from "../components/CardFinalDeck";
-import Champions from "../components/Champions";
 import Table from "../components/Table";
 
 export default function CardInfo() {
