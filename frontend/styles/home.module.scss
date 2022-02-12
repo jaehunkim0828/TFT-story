@@ -21,3 +21,9 @@
   color: white;
   text-shadow: 3px 3px 6px rgb(39, 39, 39);
 }
+
+@media (max-width: 650px) {
+  .homeLogo {
+    font-size: 3rem;
+  }
+}

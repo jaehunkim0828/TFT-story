@@ -36,6 +36,14 @@
     border: 1px solid rgb(185, 185, 185);
     padding: 10px;
     color: #1a1a40;
+
+    .seletedChamp {
+      color: rgb(255, 145, 125);
+      width: 4rem;
+    }
+    input {
+      width: 8rem;
+    }
   }
 
   .description {
@@ -53,9 +61,6 @@
   .descriptionInput {
     margin-top: 0.5rem;
     width: 100%;
-  }
-  .seletedChamp {
-    color: rgb(255, 145, 125);
   }
 
   .sugment {
@@ -133,5 +138,15 @@
 
   .btn {
     font-size: 0.8rem;
+  }
+
+  .deck {
+    .contents {
+      width: 20rem;
+    }
+
+    .semideck {
+      width: 22rem;
+    }
   }
 }

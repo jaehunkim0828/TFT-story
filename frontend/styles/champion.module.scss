@@ -4,7 +4,8 @@
   flex-wrap: wrap;
 
   .card {
-    border: 1px solid black;
+    border-width: 3px;
+    border-style: solid;
     width: 4rem;
     height: 4rem;
     margin: 5px;
@@ -49,7 +50,7 @@
     .card {
       width: 2rem;
       height: 2rem;
-      border: 0.5px solid #ffc600;
+      border-width: 1px;
       margin: 1px;
 
       .cost {
