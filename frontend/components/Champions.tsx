@@ -1,7 +1,3 @@
-import axios from 'axios';
-import { AppProps } from 'next/dist/shared/lib/router/router';
-import { useEffect, useState } from 'react';
-
 import style from '../styles/champion.module.scss';
 import Champion from './Champion';
 
