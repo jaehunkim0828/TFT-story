@@ -8,12 +8,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-dnd-multi-backend": "^6.0.1",
     "axios": "^0.24.0",
     "next": "^12.0.8",
     "next-redux-wrapper": "^7.0.5",
     "react": "^17.0.2",
-    "react-dnd": "^14.0.5",
+    "react-device-detect": "^2.1.2",
+    "react-dnd": "15.1.1",
     "react-dnd-html5-backend": "^14.1.0",
+    "react-dnd-touch-backend": "^15.1.1",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-select": "^5.2.2",
