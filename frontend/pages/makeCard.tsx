@@ -10,6 +10,7 @@ import style from '../styles/makeCard.module.scss';
 import { countUpDeckMake } from '../store/actions/saveDeck';
 import { RootState } from '../store/reducers';
 import { countReset } from "../store/actions/traitAct";
+import { DeckInfoType } from "../type";
 
 export default function MakeCard() {
     const router = useRouter();
@@ -19,6 +20,35 @@ export default function MakeCard() {
     const [champions, setChampion] = useState<object[]>([]);
     const [augmented, setaugmented] = useState<object[]>([]);
     const [items, setItems] = useState<object[]>([]);
+
+    const makeCardVaildate = (deck: DeckInfoType) => {
+        if (deck.lv3.length < 3) {
+            window.alert('레벨 3에서 챔피언 3명을 선택해주세요.');
+            return false;
+        }
+        if (deck.lv4.length < 4) {
+            window.alert('레벨 4에서 챔피언 4명을 선택해주세요.');
+            return false;
+        }
+        if (deck.lv5.length < 5) {
+            window.alert('레벨 5에서 챔피언 5명을 선택해주세요.');
+            return false;
+        }
+        if (deck.lv6.length < 6) {
+            window.alert('레벨 6에서 챔피언 6명을 선택해주세요.');
+            return false;
+        }
+        if (deck.lv7.length < 7) {
+            window.alert('레벨 7에서 챔피언 7명을 선택해주세요.');
+            return false;
+        }
+        if (Object.keys(deck.final).length === 0) {
+            window.alert('최종덱에 챔피언을 넣어주세요');
+            return false;
+        }
+
+        return true;
+    }
 
     const initialDeckInfo = {
         title: '',
@@ -40,6 +70,7 @@ export default function MakeCard() {
         password: '',
         traits: {},
     }
+    
     const [deckInfo, setDeckInfo] = useState(initialDeckInfo);
 
     const getAll = async () => {
@@ -63,9 +94,12 @@ export default function MakeCard() {
             const password = window.prompt('덱 비밀번호를 입력해주세요. 4자리', '1234');
             if (password && password.length === 4) {
                 deckInfo.password = password;
-                await axios.post('http://localhost:8080/card', deckInfo);
-                dispatch(countUpDeckMake());
-                router.push('/main');
+                console.log(deckInfo);
+                if (makeCardVaildate(deckInfo)) {
+                    await axios.post('http://localhost:8080/card', deckInfo);
+                    dispatch(countUpDeckMake());
+                    router.push('/main');
+                }
                 return;
             }
             return;
