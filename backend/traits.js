@@ -81,7 +81,7 @@ export const chTr = [
 { trait: 44, name: '대식가', champions: [141]}, // 1 73
 { trait: 45, name: '돌연변이', champions: [83, 132,	135, 94, 136, 134]}, // 6 79
 { trait: 46, name: '마법공학', champions: [116,	108, 109, 84, 80, 123, 110]}, // 7 86
-{ trait: 47, name: '범죄조직', champions: [96, 91, 101, 114, 115,124]}, // 6 92
+{ trait: 47, name: '범죄도시', champions: [96, 91, 101, 114, 115,124]}, // 6 92
 { trait: 48, name: '사교계', champions: [105, 97, 87, 106]}, // 4 96
 { trait: 49, name: '시계태엽', champions: [118, 133, 129, 130]}, // 4 100
 { trait: 50, name: '연미복', champions: [92, 79, 102, 140, 126, 111	]}, // 6 106
@@ -113,7 +113,7 @@ export const chTr = [
     // 대식가 = 탐 켄치									
     // 돌연변이 = 132		83 132	카이사		말자하		카직스		렉사이	134	
     // 마법공학 = 116		세주아니			스웨인	루시안	녹턴		자르반 4세 110		
-    // 범죄조직 = 모르가나		다리우스 브라움				아리			애쉬		자이라	
+    // 범죄도시 = 모르가나		다리우스 브라움				아리			애쉬		자이라	
     // 사교계 = 세나	97	갈리오								나르		세라핀
     // 시계태엽 = 118				카밀					진			질리언
     // 연미복 = 레오나		드레이븐		브랜드		탈론	제리		신드라	
@@ -144,7 +144,7 @@ export const trait =[
 { name: '대식가',  image: '/images/traits/대식가.png' },
 { name: '돌연변이',  image: '/images/traits/돌연변이.png' },
 { name: '마법공학',  image: '/images/traits/마법공학.png' },
-{ name: '범죄조직',  image: '/images/traits/범죄조직.png' },
+{ name: '범죄도시',  image: '/images/traits/범죄도시.png' },
 { name: '사교계',  image: '/images/traits/사교계.png' },
 { name: '시계태엽',  image: '/images/traits/시계태엽.png' },
 { name: '연미복',  image: '/images/traits/연미복.png' },
