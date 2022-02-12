@@ -5,6 +5,13 @@ import { useRouter } from "next/router";
 import SemiChamps from "../components/SemiChamps";
 import CardAugmented from "../components/CardAugmented";
 import SemiTraits from "../components/SemiTraits";
+import style from '../styles/cardInfo.module.scss';
+import SemiDesc from "../components/SemiDesc";
+import DropDown from "../components/DropDown";
+import httpServer, { http } from "../server";
+import CardFinalDeck from "../components/CardFinalDeck";
+import Champions from "../components/Champions";
+import Table from "../components/Table";
 
 export default function CardInfo() {
     const router = useRouter();
@@ -32,6 +39,7 @@ export default function CardInfo() {
     const [thumbInfo, setThumbInfo] = useState(initialThumbInfo);
     const [champions, setChampions] = useState<object[]>([]);
 
+    
     const getIdDeckInfo = async () => {
         const cardIds = localStorage.getItem('cardId');
         if (!cardIds) return router.push('/main');
@@ -43,23 +51,31 @@ export default function CardInfo() {
         setInfo(cardData.data[0]);
         setThumbInfo(thumbData.data[0]);
     }
-
     useEffect(() => {
         getIdDeckInfo();
     }, [])
     
     return (
-        <div>
-            <div>{thumbInfo.name}</div>
-            <div>{thumbInfo.description}</div>
-            <div>{cardInfo.traits}</div>
-            <SemiTraits traits={cardInfo.traits} />
-            <CardAugmented augmented={cardInfo.augmented}/>
-            <SemiChamps champions={champions} level={cardInfo.level3} name={'레벨 3'}/>
-            <SemiChamps champions={champions} level={cardInfo.level4} name={'레벨 4'}/>
-            <SemiChamps champions={champions} level={cardInfo.level5} name={'레벨 5'}/>
-            <SemiChamps champions={champions} level={cardInfo.level6} name={'레벨 6'}/>
-            <SemiChamps champions={champions} level={cardInfo.level7} name={'레벨 7'}/>
+        <div className={ style.container } >
+            <div className={ style.backgroundImg } style={{ backgroundImage: `url(${httpServer(thumbInfo.image)})`}} />
+            <div className={style.main}>
+                <div className={style.name}>{thumbInfo.name}</div>
+                <DropDown text={'소개'}>
+                    <div>{thumbInfo.description}</div>
+                </DropDown>
+                <DropDown text={'증강체 추천'}>
+                    <CardAugmented augmented={cardInfo.augmented}/>
+                </DropDown>
+                <DropDown text={'빌드'}>
+                    <SemiChamps champions={champions} level={cardInfo.level3} name={'레벨 3'}/>
+                    <SemiChamps champions={champions} level={cardInfo.level4} name={'레벨 4'}/>
+                    <SemiChamps champions={champions} level={cardInfo.level5} name={'레벨 5'}/>
+                    <SemiChamps champions={champions} level={cardInfo.level6} name={'레벨 6'}/>
+                    <SemiChamps champions={champions} level={cardInfo.level7} name={'레벨 7'}/>
+                </DropDown>
+                <SemiTraits traits={cardInfo.traits} />
+                <Table final={cardInfo.champions} items={cardInfo.items}/>
+            </div>
         </div>
     )
 }
