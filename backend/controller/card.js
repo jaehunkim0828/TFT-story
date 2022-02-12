@@ -20,13 +20,11 @@ export async function makeDeck (req, res, next) {
             description, //string,
             items, //object -> array { '19': [2, 5, 10], '20': [11, 21, 13]}
             password, //string 4글자
-            traits,
-            main, // { 고물상: 1, 아카데미: 2, 봉쇄자: 1 }
+            traits,  // { 고물상: 1, 아카데미: 2, 봉쇄자: 1 }
         } = req.body;
 
         const insertcard = await cardRepository.insertCard(augmented, lv3, lv4, lv5, lv6, lv7, final, items, traits);
         const cardId = insertcard[0].insertId;
-        console.log(cardId);
         await cardRepository.insertThumb(title, traits, images, description, cardId, password);
         res.status(201).send({ message: '만들기 성공!' });
     } catch(err) {
@@ -45,4 +43,16 @@ export async function getThumbId (req, res, next) {
     const { id } = req.params;
     const thumb = await cardRepository.seletedThumb(id);
     res.send(thumb[0]);
+}
+
+export async function deleteDeck(req, res) {
+    const { id } = req.params;
+    const deck = await cardRepository.getByid(id);
+    if (!deck[0].length) {
+        res.status(403).send({ message: '존재하지 않는 카드덱 입니다. '});
+    }
+    await cardRepository.deleteThumb(id);
+    console.log(deck[0][0])
+    await cardRepository.deleteCard(deck[0][0].card_id);
+    res.send('hello');
 }
