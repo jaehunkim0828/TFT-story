@@ -12,7 +12,7 @@ import { initialItemName } from '../type';
 
 
 
-export default function DropChampion({ styles, indexs, setDeckInfo, deckInfo }: { styles: object, indexs: string, deckInfo: any, setDeckInfo: any }) {
+export default function DropChampion({ styles, indexs, setDeckInfo, deckInfo }: { styles: object, indexs: string, deckInfo?: any, setDeckInfo?: any }) {
     const dispatch = useDispatch();
     const { image, id } = useSelector((state: RootState) => state.championImgReducer);
     const itemImage =  useSelector((state: RootState) => state.itemReducer).image;
@@ -26,7 +26,6 @@ export default function DropChampion({ styles, indexs, setDeckInfo, deckInfo }: 
     const [itemSinerge, setItemSinerge] = useState<string[]>([]);
 
     const getchampionTraits = async () => {
-        
         return await axios.get(`http://localhost:8080/champion/traits/${id}`)
         .then(({ data }) => {
             const values: number[] = Object.values(deckInfo.final);
@@ -45,7 +44,7 @@ export default function DropChampion({ styles, indexs, setDeckInfo, deckInfo }: 
         if ('8' === id) return '난동꾼';
         if ('13' === id) return '도전자';
         if ('14' === id) return '돌연변이';
-        if ('21' === id) return '범죄조직';
+        if ('21' === id) return '범죄도시';
         if ('25' === id) return '사교계';
         if ('32' === id) return '시계태엽';
         if ('33' === id) return '마법공학';
@@ -86,7 +85,7 @@ export default function DropChampion({ styles, indexs, setDeckInfo, deckInfo }: 
                     return window.alert('챔피언을 먼저 옮겨주세요!');
                 }
                 setItems([...items, itemImage]);
-                if (getSinerge(itemName) !== 'none') {
+                if (itemName && getSinerge(itemName) !== 'none') {
                     dispatch(countUp(getSinerge(itemName)));
                     setItemSinerge(prev => [...prev, getSinerge(itemName)])
                     dispatch(countUpChamp());
