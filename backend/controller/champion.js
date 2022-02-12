@@ -24,3 +24,9 @@ export async function getTraitOfChampion (req, res, next) {
     //     res.send(traits);
     // })
 }
+
+export async function getChampionImage(req, res, next) {
+    const { id } = req.params;
+    const getchampImg = await championRepository.findImage(id);
+    res.status(200).send(getchampImg[0][0]);
+}
