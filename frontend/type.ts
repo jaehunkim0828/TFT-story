@@ -1,17 +1,24 @@
+import { Key } from "react"
+
 export type CardLists = {
-    data: any[],
+    data: Deck[],
+}
+
+export type Deck = { 
+    id: number, 
+    trait: string, 
+    name: string, 
+    image: string, 
+    description: string
+    card_id: number,
+    password: number,
+    created_at: string,
 }
 
 export interface CardItem {
     i: number,
-    deck: { 
-        id: number, 
-        trait: string, 
-        name: string, 
-        image: string, 
-        description: string
-        card_id: number,
-    }
+    deck: Deck
+    changeIndex: (index: number) => void,
 }
 
 export type Champions = {
@@ -37,7 +44,7 @@ export const initialItemName = [
     '대식가',
     '돌연변이',
     '마법공학',
-    '범죄조직',
+    '범죄도시',
     '사교계',
     '시계태엽',
     '연미복',
@@ -48,3 +55,38 @@ export const initialItemName = [
     '화학공학',
     '흑막',
 ]
+
+export type DeckInfoType = {
+    title: string,
+    description: string,
+    augmented: {
+        level1: string[],
+        level2: string[],
+        level3: string[],
+    },
+    main: string,
+    lv3: string[],
+    lv4: string[],
+    lv5: string[],
+    lv6: string[],
+    lv7: string[],
+    images: string,
+    final: {
+        [key: string]: string
+    },
+    items: {
+        [key: string]: string,
+    },
+    password: string,
+    traits: {
+        [key: string]: string,
+    }
+}
+
+export type CardChampionProps = { 
+    styles: object, 
+    champId?: string, 
+    items?: Array<string> 
+}
+
+export type AxiosChamp = { images: string, cost: number, id: number, name: string };

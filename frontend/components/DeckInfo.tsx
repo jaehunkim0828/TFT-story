@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import style from '../styles/makeCard.module.scss';
 import SemiDeck from './SemiDeck';
 import Augmneted from './Augmented';
+import { DeckInfoType } from '../type';
 
 type Augment = {
     level1: object[],
@@ -10,7 +11,7 @@ type Augment = {
     level3: object[],
 }
 
-export default function DeckInfo({ champions, augmented, deckInfo, setDeckInfo }: any) {
+export default function DeckInfo({ champions, augmented, deckInfo, setDeckInfo }: { champions: any, augmented: any, deckInfo: DeckInfoType, setDeckInfo: any}) {
 
     const [mainChamp, setMainChamp] = useState('선택하기');
     const [filterChamps, setfilteringChamps] = useState([]);

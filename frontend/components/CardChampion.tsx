@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
 import { http } from '../server';
 import style from '../styles/table.module.scss';
+import { CardChampionProps } from '../type';
 
-export default function CardChampion({ styles, champId, items }: { styles: object, champId?: string, items?: Array<string> }) {
+export default function CardChampion({ styles, champId, items }: CardChampionProps) {
     const [imageSrc, setImage] = useState('');
     const [itemSrc, setItem] = useState<string[]>([]);
     const [bool, setbool] = useState(false);

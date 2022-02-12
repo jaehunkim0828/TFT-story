@@ -1,7 +1,8 @@
 import style from '../styles/champion.module.scss';
+import { AxiosChamp } from '../type';
 import Champion from './Champion';
 
-export default function Champions({ champions }: any) {
+export default function Champions({ champions }: { champions: AxiosChamp[]}) {
 
     return (
         <div className={style.championsCards}>

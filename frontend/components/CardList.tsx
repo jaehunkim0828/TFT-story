@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import Card from "./Card";
 import style from '../styles/cardList.module.scss';
-import { CardLists } from '../type';
+import { CardLists, Deck } from '../type';
 
 export default function CardList() {
-    const [decks, setDecks] = useState<any[]>([]);
+    const [decks, setDecks] = useState<Deck[]>([]);
     const [deleteindex, setDeleteIndex] = useState<number>(-1);
 
 
