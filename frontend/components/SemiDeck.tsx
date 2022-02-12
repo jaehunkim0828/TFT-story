@@ -12,8 +12,8 @@ const Menu = (props: any) => {
             {optionLength < 4 ? (
                 props.children
             ) : (
-            <div>최대 {4}개 까지입니다.</div>
-      )}
+              <div>최대 {4}개 까지입니다.</div>
+            )}
 
         </components.Menu>
     )
@@ -35,7 +35,13 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                 isMulti
                 options={isover.lv3 ? [] : champions}
                 onChange={(e) => {
-                    if (e.length > 2) {
+                    setDeckInfo((prev: any) => {
+                        return {
+                            ...prev,
+                            lv3: e
+                        }
+                    })
+                    if (e.length >= 3) {
                         setIsover({
                             ...isover,
                             lv3: true
@@ -45,10 +51,6 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                     setIsover({
                         ...isover,
                         lv3: false
-                    })
-                    setDeckInfo({
-                        ...deckInfo,
-                        lv3: e
                     })
                 }}
                 className={style.seleck}
@@ -60,6 +62,10 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                 isMulti
                 options={isover.lv4 ? [] : champions}
                 onChange={(e) => {
+                    setDeckInfo({
+                        ...deckInfo,
+                        lv4: e
+                    })
                     if (e.length > 3) {
                         setIsover({
                             ...isover,
@@ -71,10 +77,6 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                         ...isover,
                         lv4: false
                     })
-                    setDeckInfo({
-                        ...deckInfo,
-                        lv4: e
-                    })
                 }}
                 className={style.seleck}
                 placeholder='lv4 챔피언 추천'
@@ -84,6 +86,10 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                 isMulti
                 options={isover.lv5 ? [] : champions}
                 onChange={(e) => {
+                    setDeckInfo({
+                        ...deckInfo,
+                        lv5: e
+                    })
                     if (e.length > 4) {
                         setIsover({
                             ...isover,
@@ -95,10 +101,6 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                         ...isover,
                         lv5: false
                     })
-                    setDeckInfo({
-                        ...deckInfo,
-                        lv5: e
-                    })
                 }}
                 className={style.seleck}
                 placeholder='lv5 챔피언 추천'
@@ -108,6 +110,10 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                 isMulti
                 options={isover.lv6 ? [] : champions}
                 onChange={(e) => {
+                    setDeckInfo({
+                        ...deckInfo,
+                        lv6: e
+                    })
                     if (e.length > 5) {
                         setIsover({
                             ...isover,
@@ -119,10 +125,6 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                         ...isover,
                         lv6: false
                     })
-                    setDeckInfo({
-                        ...deckInfo,
-                        lv6: e
-                    })
                 }}
                 className={style.seleck}
                 placeholder='lv6 챔피언 추천'
@@ -132,6 +134,10 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                 isMulti
                 options={isover.lv7 ? [] : champions}
                 onChange={(e) => {
+                    setDeckInfo({
+                        ...deckInfo,
+                        lv7: e
+                    })
                     if (e.length > 6) {
                         setIsover({
                             ...isover,
@@ -142,10 +148,6 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                     setIsover({
                         ...isover,
                         lv7: false
-                    })
-                    setDeckInfo({
-                        ...deckInfo,
-                        lv7: e
                     })
                 }}
                 className={style.seleck}
