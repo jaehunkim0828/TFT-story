@@ -1,7 +1,7 @@
 import express from "express";
 
 import { db } from '../db.js';
-import { chTr } from '../traits.js';
+import { augmented } from "../augmented.js";
 
 const traitRouter = express.Router();
 
@@ -13,7 +13,11 @@ const traitRouter = express.Router();
     //     .catch(err => res.status(404).send({ message: 'not Found' }));
     // });
     //return await db.execute('INSERT INTO traits (name, image) VALUES (?, ?)', [ob.name, ob.image]);
-traitRouter.route('/').post(async (req, res, next) => {
+traitRouter.route('/').get(async (req, res, next) => {
+    augmented.map(async (data) => {
+        await db.execute('INSERT INTO augmented (name, description, level) VALUES (?, ?, ?)', [data.name, data.description, data.level]);
+    })
+
     res.send('done');
 })
 

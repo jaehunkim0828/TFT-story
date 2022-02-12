@@ -28,7 +28,8 @@ cardRouter.route('/')
     .post(validateCard, cardController.makeDeck);
 
 cardRouter.route('/:id')
-    .get(validate, cardController.getCardId);
+    .get(validate, cardController.getCardId)
+    .delete(validate, cardController.deleteDeck);
 
 cardRouter.route('/thumb/:id')
     .get(validate, cardController.getThumbId);
