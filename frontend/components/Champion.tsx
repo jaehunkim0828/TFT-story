@@ -20,18 +20,18 @@ export default function Champion({ champ, index }: { champ: AxiosChamp, index: n
 
     const chooseBorderColor = (i: number) => {
         if (i === 1) {   
-            return '3px solid #9D9D9D'
+            return '#9D9D9D'
         }
         if (i === 2) {
-            return '3px solid #24A19C'
+            return '#24A19C'
         }
         if (i === 3) {
-            return '3px solid #1C6DD0'
+            return '#1C6DD0'
         }
         if (i === 4) {
-            return '3px solid #F94892'
+            return '#F94892'
         } else {
-            return '3px solid #ffc600'
+            return '#ffc600'
         }
     }
 
@@ -71,7 +71,7 @@ export default function Champion({ champ, index }: { champ: AxiosChamp, index: n
                 backgroundPosition: 'center',
                 opacity: isDragging ? 0.5 : 1,
                 cursor: 'move',
-                border: chooseBorderColor(champ.cost),
+                borderColor: chooseBorderColor(champ.cost),
             }}
         >
             <div className={style.cost} style={{background: chooseBackground(champ.cost)}}>{champ.cost}</div>
