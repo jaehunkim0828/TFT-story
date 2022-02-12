@@ -1,3 +1,88 @@
+// 1024px 기준
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-family: "Jua", sans-serif;
+
+  .backgroundImg {
+    height: 40rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+  }
+
+  .main {
+    position: absolute;
+    top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .name {
+      font-family: "Nanum Gothic Coding", monospace;
+      font-weight: 700;
+      font-size: 3rem;
+      color: white;
+    }
+
+    .traits {
+      display: flex;
+      flex-wrap: wrap;
+      width: 800px;
+      margin-bottom: 1rem;
+
+      .traitRow {
+        display: flex;
+        font-size: 1.5rem;
+        align-items: center;
+        background-color: rgb(250, 152, 152);
+        padding: 0.5rem;
+        border-radius: 10px;
+        margin: 0 1rem;
+
+        .traitImage {
+          width: 1.5rem;
+          height: 1.5rem;
+          margin-right: 5px;
+        }
+        .count {
+          color: #022e57;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.dropDown {
+  margin: 2rem 0;
+
+  .nav {
+    background-color: rgb(234, 234, 234);
+    width: 30rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .subContent {
+    background-color: rgb(250, 250, 250);
+    padding: 1rem;
+    width: 30rem;
+    border-radius: 0 0 5px 5px;
+  }
+}
+
 .levelContainer {
   display: flex;
 
@@ -10,8 +95,69 @@
 
 .sugmentedInfo {
   display: flex;
+  align-items: center;
 
   .sugmenteds {
     display: flex;
+    margin: 0.5rem 0;
+    flex-wrap: wrap;
+
+    .sugmented {
+      background-color: rgb(190, 190, 190);
+      padding: 0.5rem;
+      border-radius: 5px;
+      margin: 0.5rem 0.5rem;
+      display: flex;
+    }
+  }
+}
+
+@media (max-width: 1248px) {
+  .container {
+    .main {
+      .traits {
+        width: 600px;
+
+        .traitRow {
+          font-size: 1rem;
+          margin: 0 0.5rem;
+
+          .traitImage {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 5px;
+          }
+          .count {
+            color: #022e57;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    .main {
+      .traits {
+        width: 300px;
+
+        .traitRow {
+          font-size: 0.6rem;
+          margin: 0 0.5rem;
+
+          .traitImage {
+            width: 0.6rem;
+            height: 0.6rem;
+            margin-right: 3px;
+          }
+          .count {
+            color: #022e57;
+            margin-left: 3px;
+          }
+        }
+      }
+    }
   }
 }

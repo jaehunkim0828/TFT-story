@@ -3,42 +3,84 @@
   flex-wrap: wrap;
   font-family: "Jua", sans-serif;
 
-  .card {
-    color: white;
+  .cardContainer {
+    width: 15rem;
+    padding: 3% 3% 0 3%;
     background-color: #ffb5b5;
-    width: 40%;
-    margin: 5% 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3% 3%;
     border-radius: 5px;
-    cursor: pointer;
-    transition: transform 250ms ease-in;
-
-    .name {
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin: 1rem 0;
-    }
-
-    .trait {
-      display: flex;
-      flex-wrap: wrap;
-      color: #c1a3a3;
-    }
+    margin: 5% 5%;
+    transition: transform 100ms ease-in;
 
     &:hover {
       background-color: #ff7272;
-      transform: scale(1.02);
+      // transform: scale(1.02);
 
-      .trait {
-        color: gray;
+      .card {
+        .trait {
+          color: gray;
+        }
       }
     }
 
-    .cardImage {
-      width: 100%;
+    .option {
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      cursor: pointer;
+
+      img {
+        width: 1rem;
+        height: 1rem;
+      }
     }
+
+    .card {
+      color: white;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 5px;
+
+      .name {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin: 1rem 0;
+      }
+
+      .trait {
+        display: flex;
+        flex-wrap: wrap;
+        color: #c1a3a3;
+      }
+
+      .cardImage {
+        width: 100%;
+      }
+
+      .cardContent {
+        width: 100%;
+
+        .time {
+          color: rgb(134, 134, 134);
+        }
+      }
+    }
+  }
+}
+
+.uadRow {
+  padding: 3% 0 1% 0;
+  display: flex;
+  align-items: flex-end;
+
+  .uad {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
   }
 }

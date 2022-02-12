@@ -1,5 +1,7 @@
 .nav {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: tomato;
   padding: 2%;
 
@@ -15,5 +17,10 @@
     .subLogo {
       color: rgb(49, 49, 49);
     }
+  }
+
+  .season {
+    font-size: 1.5rem;
+    font-weight: 500;
   }
 }
