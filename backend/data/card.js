@@ -1,5 +1,7 @@
 import { db } from '../db.js';
 
+const ORDER_DESC = 'ORDER BY card_thumb.created_at DESC';
+
 export async function insertCard(augmented, lv3, lv4, lv5, lv6, lv7, final, items, traits) {
     const lvToString = (lv) => {
         return lv.reduce((acc, obj, index, arr) => {
@@ -81,12 +83,12 @@ export async function insertThumb(title, traits, images, description, cardId, pa
 
     // 고물상 > 아카데미 > 봉쇄자
 
-    return await db.execute('INSERT INTO card_thumb (name, trait, image, description, card_id, password) VALUES (?, ?, ?, ?, ?, ?)'
-        , [title, traitToString(traits), images, description, cardId, password]);
+    return await db.execute('INSERT INTO card_thumb (name, trait, image, description, card_id, password, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
+        , [title, traitToString(traits), images, description, cardId, password, new Date()]);
 }
 
 export async function seletedcardThumb() {
-    return await db.execute('SELECT * FROM card_thumb');
+    return await db.execute(`SELECT * FROM card_thumb ${ORDER_DESC}`);
 }
 
 export async function seletedCard(id) {
@@ -96,3 +98,17 @@ export async function seletedCard(id) {
 export async function seletedThumb(id) {
     return await db.execute('SELECT * FROM card_thumb WHERE id=?', [id]);
 }
+
+export async function getByid(id) {
+    return await db.execute('SELECT card_id FROM card_thumb WHERE id=?', [id]);
+}
+
+export async function deleteThumb(id) {
+    return await db.execute('DELETE FROM card_thumb WHERE id=?', [id]);
+}
+
+export async function deleteCard(id) {
+    return await db.execute('DELETE FROM card WHERE id=?', [id]);
+}
+
+// update UPDATE tweets SET text=? WHERE id=?
