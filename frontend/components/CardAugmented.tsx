@@ -18,7 +18,7 @@ export default function CardAugmented({ augmented }: { augmented: string }) {
     return (
         <div>
             <div className={ style.sugmentedInfo }>
-                <div style={{ color: '#9b9b9b'}}>실버</div>
+                <div style={{ color: '#9b9b9b', width: '4rem'}}>실버</div>
                 <div className={ style.sugmenteds }>
                     {
                         augmenteds['lv1']?.map((sug: string, i: number) => {
@@ -28,7 +28,7 @@ export default function CardAugmented({ augmented }: { augmented: string }) {
                 </div>
             </div>
             <div className={ style.sugmentedInfo }>
-                <div style={{ color: '#EEC373'}}>골드</div>
+                <div style={{ color: '#EEC373', width: '4rem'}}>골드</div>
                 <div className={ style.sugmenteds }>
                     {
                         augmenteds['lv2']?.map((sug: string, i: number) => {
@@ -38,7 +38,7 @@ export default function CardAugmented({ augmented }: { augmented: string }) {
                 </div>
             </div>
             <div className={ style.sugmentedInfo }>
-                <div style={{ color: '#35D0BA'}}>플레티넘</div>
+                <div style={{ color: '#35D0BA', width: '4rem'}}>플레티넘</div>
                 <div className={ style.sugmenteds }>
                     {
                         augmenteds['lv3']?.map((sug: string, i: number) => {
