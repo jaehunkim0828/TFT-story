@@ -4,19 +4,9 @@ import { multiValueAsValue } from 'react-select/dist/declarations/src/utils';
 
 import style from '../styles/makeCard.module.scss';
 
-const Menu = (props: any) => {
-
-    const optionLength = props.getValue().length || 0;
-    return (
-        <components.Menu {...props}>
-            {optionLength < 4 ? (
-                props.children
-            ) : (
-              <div>최대 {4}개 까지입니다.</div>
-            )}
-
-        </components.Menu>
-    )
+type SelectChamp = {
+    value: number,
+    label: string,
 }
 
 export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
@@ -27,6 +17,13 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
         lv6: false,
         lv7: false,
     });
+
+    const countingmember = (e: any): number[] => {
+        return e.map((champ: SelectChamp) => {
+            if (champ.value === 132 || champ.value === 97 || champ.value === 116) return 2;
+            return 1;
+        })
+    }
 
     return (
         <div className={style.semideck}>
@@ -41,7 +38,7 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                             lv3: e
                         }
                     })
-                    if (e.length >= 3) {
+                    if (e.length && countingmember(e).reduce((a, c) => a + c) >= 3) {
                         setIsover({
                             ...isover,
                             lv3: true
