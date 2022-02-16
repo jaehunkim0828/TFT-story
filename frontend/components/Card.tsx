@@ -38,7 +38,7 @@ export default function Card({i, deck, changeIndex}: CardItem) {
     return (
         <div 
             className={style.cardContainer}
-            style={{ height: isUp ? '21rem' : '18rem'}}
+            style={{ height: isUp ? '35%' : '20%'}}
         >
             <div 
                 className={style.card} 
