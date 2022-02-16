@@ -63,7 +63,7 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                         ...deckInfo,
                         lv4: e
                     })
-                    if (e.length > 3) {
+                    if (e.length && countingmember(e).reduce((a, c) => a + c) >= 4) {
                         setIsover({
                             ...isover,
                             lv4: true
@@ -87,7 +87,7 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                         ...deckInfo,
                         lv5: e
                     })
-                    if (e.length > 4) {
+                    if (e.length && countingmember(e).reduce((a, c) => a + c) >= 5) {
                         setIsover({
                             ...isover,
                             lv5: true
@@ -111,7 +111,7 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                         ...deckInfo,
                         lv6: e
                     })
-                    if (e.length > 5) {
+                    if (e.length && countingmember(e).reduce((a, c) => a + c) > 5) {
                         setIsover({
                             ...isover,
                             lv6: true
@@ -135,7 +135,7 @@ export default function SemiDeck({champions, setDeckInfo, deckInfo}: any) {
                         ...deckInfo,
                         lv7: e
                     })
-                    if (e.length > 6) {
+                    if (e.length && countingmember(e).reduce((a, c) => a + c) > 6) {
                         setIsover({
                             ...isover,
                             lv7: true
