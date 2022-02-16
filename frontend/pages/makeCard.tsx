@@ -11,6 +11,7 @@ import { countUpDeckMake } from '../store/actions/saveDeck';
 import { RootState } from '../store/reducers';
 import { countReset } from "../store/actions/traitAct";
 import { DeckInfoType } from "../type";
+import { delLocale } from "next/dist/shared/lib/router/router";
 
 export default function MakeCard() {
     const router = useRouter();
@@ -21,24 +22,32 @@ export default function MakeCard() {
     const [augmented, setaugmented] = useState<object[]>([]);
     const [items, setItems] = useState<object[]>([]);
 
+    const countingMember = (lv: any): number[] => {
+        return lv.map((obj: { label: string, value: number}) => {
+            if (obj.value === 132 || obj.value === 97 || obj.value === 116) return 2;
+            return 1;
+        })
+    }
+
     const makeCardVaildate = (deck: DeckInfoType) => {
-        if (deck.lv3.length < 3) {
+        console.log(countingMember(deck.lv3).reduce((a, c) => a + c));
+        if (!deck.lv3.length || countingMember(deck.lv3).reduce((a, c) => a + c) < 3) {
             window.alert('레벨 3에서 챔피언 3명을 선택해주세요.');
             return false;
         }
-        if (deck.lv4.length < 4) {
+        if (!deck.lv4.length || countingMember(deck.lv4).reduce((a, c) => a + c) < 4) {
             window.alert('레벨 4에서 챔피언 4명을 선택해주세요.');
             return false;
         }
-        if (deck.lv5.length < 5) {
+        if (!deck.lv5.length || countingMember(deck.lv5).reduce((a, c) => a + c) < 5) {
             window.alert('레벨 5에서 챔피언 5명을 선택해주세요.');
             return false;
         }
-        if (deck.lv6.length < 6) {
+        if (!deck.lv6.length || countingMember(deck.lv6).reduce((a, c) => a + c) < 6) {
             window.alert('레벨 6에서 챔피언 6명을 선택해주세요.');
             return false;
         }
-        if (deck.lv7.length < 7) {
+        if (!deck.lv7.length || countingMember(deck.lv7).reduce((a, c) => a + c) < 7) {
             window.alert('레벨 7에서 챔피언 7명을 선택해주세요.');
             return false;
         }
@@ -94,7 +103,10 @@ export default function MakeCard() {
             const password = window.prompt('덱 비밀번호를 입력해주세요. 4자리', '1234');
             if (password && password.length === 4) {
                 deckInfo.password = password;
-                console.log(deckInfo);
+                if (deckInfo.title.length > 10) {
+                    window.alert('덱 이름은 10자 이내로 지어 주세요.');
+                    return;
+                }
                 if (makeCardVaildate(deckInfo)) {
                     await axios.post('http://15.165.15.185:8080/card', deckInfo);
                     dispatch(countUpDeckMake());
