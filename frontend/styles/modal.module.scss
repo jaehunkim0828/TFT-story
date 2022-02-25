@@ -1,0 +1,42 @@
+.modal {
+  position: absolute;
+  background-color: rgb(44, 44, 44);
+  border-radius: 5px;
+  padding: 1rem;
+  color: white;
+  left: 0%;
+  z-index: 999;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    display: flex;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: rgb(209, 209, 209);
+    margin-bottom: 0.5rem;
+  }
+
+  .desc {
+    font-family: "Jua", sans-serif;
+    margin-bottom: 0.5rem;
+  }
+
+  .content {
+    display: flex;
+    width: 6rem;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    div {
+      font-weight: bold;
+      color: tomato;
+    }
+  }
+}
