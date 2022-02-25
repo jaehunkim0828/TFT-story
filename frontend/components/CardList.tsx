@@ -11,7 +11,7 @@ export default function CardList() {
 
 
     const getCardList = async () => {
-        const cardList: CardLists = await axios.get('http://15.165.15.185:8080/card');
+        const cardList: CardLists = await axios.get('http://localhost:8080/card');
         setDecks(cardList.data);
     }
 

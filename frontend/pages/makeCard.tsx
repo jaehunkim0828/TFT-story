@@ -83,18 +83,18 @@ export default function MakeCard() {
     const [deckInfo, setDeckInfo] = useState(initialDeckInfo);
 
     const getAll = async () => {
-        await axios.get('http://15.165.15.185:8080/champion')
+        await axios.get('http://localhost:8080/champion')
         .then((champs: any) => {
             setChampion(champs.data);
         });
     }
     const getaugmented = async () => {
-        const sugmente = await axios.get('http://15.165.15.185:8080/augmented');
+        const sugmente = await axios.get('http://localhost:8080/augmented');
         setaugmented(sugmente.data);
     }
 
     const getItem = async () => {
-        const items = await axios.get('http://15.165.15.185:8080/item');
+        const items = await axios.get('http://localhost:8080/item');
         setItems(items.data);
     }
 
@@ -108,7 +108,7 @@ export default function MakeCard() {
                     return;
                 }
                 if (makeCardVaildate(deckInfo)) {
-                    await axios.post('http://15.165.15.185:8080/card', deckInfo);
+                    await axios.post('http://localhost:8080/card', deckInfo);
                     dispatch(countUpDeckMake());
                     router.push('/main');
                 }

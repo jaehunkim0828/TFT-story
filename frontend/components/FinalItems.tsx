@@ -10,7 +10,7 @@ export default function FinalItems({deckInfo, setDeckInfo}: any) {
     const getChampions = () => {
         deckInfo.final.map(async(champ: string) => {
             const id = champ.split(' ')[1];
-            const champData = await axios.get(`http://15.165.15.185:8080/${id}`);
+            const champData = await axios.get(`http://localhost:8080/${id}`);
         })
     }
 
