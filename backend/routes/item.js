@@ -9,7 +9,7 @@ itemRouter.route('/').get( async (req, res, next) => {
 })
 itemRouter.route('/:id').get( async (req, res, next) => {
     const { id } = req.params;
-    const image = await db.execute('SELECT image FROM items WHERE id=?', [id]);
+    const image = await db.execute('SELECT *  FROM items WHERE id=?', [id]);
     res.status(200).send(image[0][0]);
 })
 
