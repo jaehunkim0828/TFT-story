@@ -89,4 +89,13 @@ export type CardChampionProps = {
     items?: Array<string> 
 }
 
+export type Item = {
+    image: string,
+    com1: number,
+    com2: number,
+    desc: string,
+    id: number,
+    name: string,
+}
+
 export type AxiosChamp = { images: string, cost: number, id: number, name: string };
