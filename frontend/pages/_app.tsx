@@ -13,6 +13,7 @@ function App({ Component, PageProp }: AppProps) {
 return (
         <div>
             <Head>
+                <meta name="naver-site-verification" content="49afacdecf8c4c263f4bbb1f42dd748ffd97470b" />
                 <meta name="google-site-verification" content="llLheOnhRrWfahqIyDL0Nm9H3mhPy8i8J-a1y4TNTA4" />
                 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet"></link>
                 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&display=swap" rel="stylesheet"></link>
