@@ -111,4 +111,15 @@ export async function deleteCard(id) {
     return await db.execute('DELETE FROM card WHERE id=?', [id]);
 }
 
+export async function deleteTrait(id) {
+    return await db.execute("DELETE FROM card_trait WHERE card_id=?", [id]);
+}
+
+export async function getTratiId(name) {
+    return await db.execute('SELECT id FROM traits WHERE name=?', [name]);
+}
+
+export async function insertTraitBackground(id, traitId, values) {
+    return await db.execute('INSERT INTO card_trait (card_id, trait_id, background) VALUES (?, ?, ?)', [id, traitId[0][0].id, values]);
+}
 // update UPDATE tweets SET text=? WHERE id=?

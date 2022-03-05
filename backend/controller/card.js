@@ -26,9 +26,8 @@ export async function makeDeck (req, res, next) {
         const insertcard = await cardRepository.insertCard(augmented, lv3, lv4, lv5, lv6, lv7, final, items, traits);
         const cardId = insertcard[0].insertId;
         await cardRepository.insertThumb(title, traits, images, description, cardId, password);
-        res.status(201).send({ message: '만들기 성공!' });
+        res.status(200).send(cardId.toString());
     } catch(err) {
-        console.log(err);
         res.status(404).send(err);
     }
 }
@@ -52,7 +51,20 @@ export async function deleteDeck(req, res) {
         res.status(403).send({ message: '존재하지 않는 카드덱 입니다. '});
     }
     await cardRepository.deleteThumb(id);
-    console.log(deck[0][0])
     await cardRepository.deleteCard(deck[0][0].card_id);
-    res.send('hello');
+    await cardRepository.deleteTrait(deck[0][0].card_id);
+    res.send('done');
+}
+
+export async function makeCardTrait(req, res, next) {
+    const { id } = req.params;
+    const { backColor } =req.body;
+
+    const keys = Object.keys(backColor);
+    const values = Object.values(backColor);
+    keys.map(async(trait, i) => {
+        const traitId = await cardRepository.getTratiId(trait);
+        await cardRepository.insertTraitBackground(id, traitId, values[i]);
+    })
+    res.status(201).send('done');
 }

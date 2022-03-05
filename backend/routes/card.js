@@ -2,6 +2,7 @@ import express from 'express';
 import { body } from 'express-validator';
 
 import * as cardController from '../controller/card.js'; 
+import { db } from '../db.js';
 import { validate } from '../middleware/validator.js';
 
 const cardRouter = express.Router();
@@ -33,5 +34,12 @@ cardRouter.route('/:id')
 
 cardRouter.route('/thumb/:id')
     .get(validate, cardController.getThumbId);
+
+cardRouter.route('/trait/:id')
+    .get(async (req, res, next) => {
+        const cardTrait = await db.execute('SELECT trait_id, background FROM card_trait');
+        res.send(cardTrait[0]);
+    })
+    .post(validate, cardController.makeCardTrait);
 
 export default cardRouter;
