@@ -6,7 +6,6 @@ import { CardItem } from '../type';
 import httpImage, { http } from '../server';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import httpServer from '../server';
 import parseDate from '../util/data';
 
 export default function Card({i, deck, changeIndex}: CardItem) {
@@ -66,7 +65,7 @@ export default function Card({i, deck, changeIndex}: CardItem) {
                     onClick={deleteDeck} 
                 >
                     <div>덱 삭제하기</div>
-                    <img src={httpServer('/images/rest/delete.png')} alt='delete'/>
+                    <img src={httpImage('/images/rest/delete.png')} alt='delete'/>
                 </div>
                     : 
                 <></>
@@ -74,7 +73,7 @@ export default function Card({i, deck, changeIndex}: CardItem) {
             <div className={style.uadRow}>
                 <img 
                     className={style.uad} 
-                    src={isUp ?  httpServer('/images/rest/up.png') : httpServer('/images/rest/down.png')} 
+                    src={isUp ?  httpImage('/images/rest/up.png') : httpImage('/images/rest/down.png')} 
                     alt='button' 
                     onClick={() => {
                         if (isUp) {
