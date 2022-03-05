@@ -23,7 +23,9 @@ export default function SemiTraits({ traits }: { traits: string }) {
             {
                 traitsData.map((tr: any, i: number) => (
                     <div className={ style.traitRow } key={i}>
-                        <img className={ style.traitImage } src={tr.trImage} alt='trait'/>
+                        <div>
+                            <img className={ style.traitImage } src={tr.trImage} alt='trait'/>
+                        </div>
                         <div>{tr.trName}</div>
                         <div className={ style.count }>{tr.count}</div>
                     </div>

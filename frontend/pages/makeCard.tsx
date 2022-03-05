@@ -11,7 +11,7 @@ import { countUpDeckMake } from '../store/actions/saveDeck';
 import { RootState } from '../store/reducers';
 import { countReset } from "../store/actions/traitAct";
 import { DeckInfoType } from "../type";
-import { delLocale } from "next/dist/shared/lib/router/router";
+import { http } from "../server";
 
 export default function MakeCard() {
     const router = useRouter();
@@ -21,6 +21,8 @@ export default function MakeCard() {
     const [champions, setChampion] = useState<object[]>([]);
     const [augmented, setaugmented] = useState<object[]>([]);
     const [items, setItems] = useState<object[]>([]);
+    const [traits, setTraits] = useState<object[]>([]);
+    const [backColor, setBackColor] = useState({});
 
     const countingMember = (lv: any): number[] => {
         return lv.map((obj: { label: string, value: number}) => {
@@ -30,7 +32,6 @@ export default function MakeCard() {
     }
 
     const makeCardVaildate = (deck: DeckInfoType) => {
-        console.log(countingMember(deck.lv3).reduce((a, c) => a + c));
         if (!deck.lv3.length || countingMember(deck.lv3).reduce((a, c) => a + c) < 3) {
             window.alert('레벨 3에서 챔피언 3명을 선택해주세요.');
             return false;
@@ -98,6 +99,11 @@ export default function MakeCard() {
         setItems(items.data);
     }
 
+    const getTrait = async () => {
+        const traits = await axios.get(http + '/trait');
+        setTraits(traits.data);
+    }
+
     const save = async () => {
         try{
             const password = window.prompt('덱 비밀번호를 입력해주세요. 4자리', '1234');
@@ -108,7 +114,9 @@ export default function MakeCard() {
                     return;
                 }
                 if (makeCardVaildate(deckInfo)) {
-                    await axios.post('http://15.165.15.185:8080/card', deckInfo);
+                    
+                    const cardId = await axios.post('http://15.165.15.185:8080/card', deckInfo);
+                    await axios.post(`http://15.165.15.185:8080/card/trait/${cardId.data}`, {backColor: backColor});
                     dispatch(countUpDeckMake());
                     router.push('/main');
                 }
@@ -124,6 +132,7 @@ export default function MakeCard() {
         getAll();
         getaugmented();
         getItem();
+        getTrait();
     }, [])
 
     useEffect(() => {
@@ -134,11 +143,10 @@ export default function MakeCard() {
     return (
         <div className={style.container}>
             <DeckInfo champions={champions} augmented={augmented} deckInfo={deckInfo} setDeckInfo={setDeckInfo}/>
-            <FinalDeck champions={champions} deckInfo={deckInfo} setDeckInfo={setDeckInfo} items={items}/>
+            <FinalDeck backColor={backColor} setBackColor={setBackColor} champions={champions} deckInfo={deckInfo} setDeckInfo={setDeckInfo} items={items} traits={traits}/>
             <Button 
                 text={'저장하기'} 
                 onClick={save}
-            
             />
         </div>
     )

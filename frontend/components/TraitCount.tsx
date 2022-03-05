@@ -11,7 +11,7 @@ type Traits = {
 }
 
 
-export default function TraitCount({ deckInfo, setDeckInfo }: any) {
+export default function TraitCount({ setBackColor, backColor, deckInfo, setDeckInfo }: any) {
     const initialTraits = [{ 'name': '고물상', 'count': 0 }];
 
     const [traits, setTraits] = useState(initialTraits);
@@ -19,7 +19,6 @@ export default function TraitCount({ deckInfo, setDeckInfo }: any) {
     const { member } = useSelector((state: RootState) => state.numberOfChampReducer);
     const { trait } = useSelector((state: RootState) => state.traitReducer);
     const { count } = useSelector((state: RootState) => state.saveDeckReducer);
-
     const traitToArray = (trait: { [key in string]: number }) => {
     
         const keys = Object.keys(trait);
@@ -48,14 +47,30 @@ export default function TraitCount({ deckInfo, setDeckInfo }: any) {
         })
     }
 
+    //finaldeck에 추가할때마다 변함
     useEffect(() => {
         setTraits(traitToArray(trait));
     }, [member]);
 
     useEffect(() => {
         insertDectInfo(traits);
+        const traitList = traits.map((trait) => {
+            if (trait.count === 1) return trait.name;
+            return;
+        }).filter((name: string | undefined) => name);
+        setBackColor((prev: any) => {
+            const obj: { [key in string]: string } = {};
+            traitList.map((trait: string | undefined) => {
+                obj[trait?? 'none'] = '/images/color/dark.svg';
+            });
+            return {
+                ...prev,
+                ...obj
+            };
+        });
     }, [traits]);
 
+    //나갔다 들어올때마다 초기화
     useEffect(() => {
         setTraits(initialTraits);
     }, [count])
@@ -64,7 +79,7 @@ export default function TraitCount({ deckInfo, setDeckInfo }: any) {
         <div className={style.container}>
             {traits.map((trait, i) => {
                 if (trait.count > 0) {
-                    return <Trait key={i} trait={trait}/>
+                    return <Trait key={i} trait={trait} setBackColor={setBackColor} backColor={backColor}/>
                 }
             })}
         </div>

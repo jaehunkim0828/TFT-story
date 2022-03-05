@@ -56,6 +56,45 @@ export const initialItemName = [
     '흑막',
 ]
 
+export type TraitColor = {
+    "one": 3,
+    "two": 1 | 3,
+    "three": 1 | 2 | 3,
+    "four": 1 | 3 | 4,
+    "five": 1 | 2 | 3 | 4,
+}
+
+export type TraitsCount = {
+    '경호대': { count: 0 | 2 | 4 | 6 | 8 , color: TraitColor},
+    '난동꾼': { count: 0 | 2 | 4 | 6 | 8 , color: TraitColor},
+    '변형술사': { count: 0 | 1 , color: TraitColor},
+    '저격수': { count: 0 | 2 | 4 | 6 , color: TraitColor},
+    '비전마법사': { count: 0 | 2 | 4 | 6 | 8 , color: TraitColor},
+    '도전자': { count: 0 | 2 | 4 | 6 | 8 , color: TraitColor},
+    '암살자': { count: 0 | 2 | 4 | 6 , color: TraitColor},
+    '쌍발총': { count: 0 | 2 | 3 | 4 | 5 , color: TraitColor},
+    '강화술사': { count: 0 | 2 | 3 | 4 | 5 , color: TraitColor},
+    '거신': { count: 0 | 2 , color: TraitColor},
+    '타격대': { count: 0 | 2 | 4 | 6 , color: TraitColor},
+    '학자': { count: 0 | 2 | 4 | 6 , color: TraitColor},
+    '혁신가': { count: 0 | 3 | 5 | 7 , color: TraitColor},
+    '경쟁자': { count: 0 | 1 , color: TraitColor},
+    '고물상': { count: 0 | 2 | 4 | 6 , color: TraitColor},
+    '대식가': { count: 0 | 1 , color: TraitColor},
+    '돌연변이': { count: 0 | 3 | 5 | 7 , color: TraitColor},
+    '마법공학': { count: 0 | 2 | 4 | 6 | 8 , color: TraitColor},
+    '범죄도시': { count: 0 | 3 | 5 | 7 , color: TraitColor},
+    '사교계': { count: 0 | 1 | 2 | 3 | 5 , color: TraitColor},
+    '시계태엽': { count: 0 | 2 | 4 | 6 , color: TraitColor},
+    '연미복': { count: 0 | 3 | 5 | 7 , color: TraitColor},
+    '요들': { count: 0 | 1 , color: TraitColor},
+    '요들군주': { count: 0 | 1 , color: TraitColor},
+    '용병': { count: 0 | 3 | 5 | 7 , color: TraitColor},
+    '집행자': { count: 0 | 2 | 4 , color: TraitColor},
+    '화학공학': { count: 0 | 3 | 5 | 7 | 9 , color: TraitColor},
+    '흑막': { count: 0 | 1 , color: TraitColor},
+}
+
 export type DeckInfoType = {
     title: string,
     description: string,

@@ -7,7 +7,7 @@ import CardAugmented from "../components/CardAugmented";
 import SemiTraits from "../components/SemiTraits";
 import style from '../styles/cardInfo.module.scss';
 import DropDown from "../components/DropDown";
-import httpServer, { http } from "../server";
+import httpImage, { http } from "../server";
 import Table from "../components/Table";
 
 export default function CardInfo() {
@@ -44,6 +44,7 @@ export default function CardInfo() {
         const championsData = await axios.get(`http://15.165.15.185:8080/champion`);
         const cardData = await axios.get(`http://15.165.15.185:8080/card/${card}`);
         const thumbData = await axios.get(`http://15.165.15.185:8080/card/thumb/${thumb}`);
+        const backColor = await axios.get(`http://15.165.15.185:8080/card/trait/${card}`);
         setChampions(championsData.data);
         setInfo(cardData.data[0]);
         setThumbInfo(thumbData.data[0]);
@@ -54,7 +55,7 @@ export default function CardInfo() {
     
     return (
         <div className={ style.container } >
-            <div className={ style.backgroundImg } style={{ backgroundImage: `url(${httpServer(thumbInfo.image)})`}} />
+            <div className={ style.backgroundImg } style={{ backgroundImage: `url(${httpImage(thumbInfo.image)})`}} />
             <div className={style.main}>
                 <div className={style.name}>{thumbInfo.name}</div>
                 <DropDown text={'소개'}>
