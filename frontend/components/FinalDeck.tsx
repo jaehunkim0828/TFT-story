@@ -14,7 +14,7 @@ import FinalItems from './FinalItems';
 import Items from './Items';
 
 
-function FinalDeck({ champions, deckInfo, setDeckInfo, items }: any) {
+function FinalDeck({ setBackColor, backColor, champions, deckInfo, setDeckInfo, items, traits }: any) {
     
     const { member } = useSelector((state: RootState) => state.numberOfChampReducer);
     const [ isChamp, setIsChamp ] = useState(true);
@@ -30,7 +30,7 @@ function FinalDeck({ champions, deckInfo, setDeckInfo, items }: any) {
         <DndProvider backend={!isMobile ? HTML5Backend :  TouchBackend} options={{ enableMouseEvents: true }}>
             <div className={style.finalContainer}>
                 <div className="table-trait">
-                    <TraitCount deckInfo={deckInfo} setDeckInfo={setDeckInfo} />
+                    <TraitCount backColor={backColor} setBackColor={setBackColor} traits={traits} deckInfo={deckInfo} setDeckInfo={setDeckInfo} />
                     <Table deckInfo={deckInfo} setDeckInfo={setDeckInfo} />
                 </div>
                 <div className={style.btnContainer}>
