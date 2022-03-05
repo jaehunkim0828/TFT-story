@@ -1,4 +1,4 @@
-export default function httpServer(image: string) {
+export default function httpImage(image: string) {
     return `http://15.165.15.185:8080${image}`;
 }
 
