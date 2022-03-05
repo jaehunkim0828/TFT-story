@@ -1,11 +1,12 @@
 .container {
   width: 100%;
-  padding: 15%;
+  padding: 5% 15%;
 
   .mainNav {
     display: flex;
     justify-content: space-between;
     padding: 0 2rem;
+    color: white;
 
     .makeCard {
       font-weight: bold;
