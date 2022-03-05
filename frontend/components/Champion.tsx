@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import style from '../styles/champion.module.scss';
 import { seleteChamp } from '../store/actions/selectedChamp';
 import { changeValue } from '../store/actions/dropValue';
-import httpServer from '../server';
+import httpImage from '../server';
 import { AxiosChamp } from '../type';
 
 export default function Champion({ champ, index }: { champ: AxiosChamp, index: number }) {
@@ -54,7 +54,7 @@ export default function Champion({ champ, index }: { champ: AxiosChamp, index: n
 
     useEffect(() => {
         if (isDragging) {
-            dispatch(seleteChamp([httpServer(champ.images), champ.id]));
+            dispatch(seleteChamp([httpImage(champ.images), champ.id]));
             dispatch(changeValue('champ'));
         }
     }, [isDragging]);
@@ -65,7 +65,7 @@ export default function Champion({ champ, index }: { champ: AxiosChamp, index: n
             className={`${style.card}`} 
             key={index}
             style={{ 
-                backgroundImage: `url(${httpServer(champ.images)})`, 
+                backgroundImage: `url(${httpImage(champ.images)})`, 
                 backgroundRepeat: 'no-repeat', 
                 backgroundSize: '115%',
                 backgroundPosition: 'center',
