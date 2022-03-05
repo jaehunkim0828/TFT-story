@@ -1,7 +1,6 @@
 import express from "express";
 
 import { db } from '../db.js';
-import { augmented } from "../augmented.js";
 
 const traitRouter = express.Router();
 
@@ -14,16 +13,13 @@ const traitRouter = express.Router();
     // });
     //return await db.execute('INSERT INTO traits (name, image) VALUES (?, ?)', [ob.name, ob.image]);
 traitRouter.route('/').get(async (req, res, next) => {
-    augmented.map(async (data) => {
-        await db.execute('INSERT INTO augmented (name, description, level) VALUES (?, ?, ?)', [data.name, data.description, data.level]);
-    })
-
-    res.send('done');
+    const traits = await db.execute('SELECT * FROM traits');
+    res.send(traits[0]);
 })
 
 traitRouter.route('/:name').get(async (req, res, next) => {
     const {name} = req.params;
-    const id = await db.execute('SELECT id FROM traits WHERE name=?', [name]);
+    const id = await db.execute('SELECT image, count, background FROM traits WHERE name=?', [name]);
 
     res.send(id[0][0]);
 })
