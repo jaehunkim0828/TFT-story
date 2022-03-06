@@ -20,11 +20,13 @@
     display: flex;
     font-size: 1rem;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     color: black;
 
     div:first-child {
       display: flex;
+      align-items: center;
     }
 
     .traitback {
@@ -60,11 +62,20 @@
     margin: 0.5rem;
     font-size: 0.5rem;
     padding: 0.5rem;
-    width: 7rem;
+    width: 7.5rem;
 
     .main {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       width: 90%;
+
+      .traitback {
+        width: 1.5rem;
+        height: 1.5rem;
+
+        img {
+          width: 0.7rem;
+        }
+      }
     }
 
     .sub {
@@ -73,7 +84,7 @@
   }
 }
 
-@media (max-width: 1248px) {
+@media (max-width: 650px) {
   .container {
     width: 80%;
     height: auto;
@@ -83,16 +94,17 @@
     margin: 0.5rem;
     font-size: 0.3rem;
     padding: 0.3rem;
-    width: 5rem;
+    width: 7rem;
 
     .main {
       font-size: 0.3rem;
       width: 90%;
 
       .traitback {
+        width: 1.2rem;
+
         img {
           width: 0.5rem;
-          margin-right: 0.2rem;
         }
       }
     }
