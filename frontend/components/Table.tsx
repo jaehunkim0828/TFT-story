@@ -41,23 +41,23 @@ export default function Table({ deckInfo, setDeckInfo, final, items }: { deckInf
         <div className={style.table}>
             {deckInfo ? dropsSection.map((_, i) => {
                 if (i < 7 || i > 13 && i < 21) {
-                    return <DropChampion deckInfo={deckInfo} setDeckInfo={setDeckInfo} key={i} styles={{ right: '5%'}} indexs={`${i}`}/>
+                    return <DropChampion deckInfo={deckInfo} setDeckInfo={setDeckInfo} key={i} styles={{ right: '3.35%'}} indexs={`${i}`}/>
                 }
-                return <DropChampion deckInfo={deckInfo} setDeckInfo={setDeckInfo} key={i} styles={{ left: '5%'}} indexs={`${i}`}/>
+                return <DropChampion deckInfo={deckInfo} setDeckInfo={setDeckInfo} key={i} styles={{ left: '3.35%'}} indexs={`${i}`}/>
             }) :
             dropsSection.map((_, i) => {
                 if (i < 7 || i > 13 && i < 21) {
                     if (champLocation[i]) {
-                        if (itemLocation[i]) return <CardChampion key={i} styles={{ right: '5%'}} champId={champLocation[i]} items={itemLocation[i]}/>
-                        return <CardChampion key={i} styles={{ right: '5%'}} champId={champLocation[i]}/>
+                        if (itemLocation[i]) return <CardChampion key={i} styles={{ right: '3.35%'}} champId={champLocation[i]} items={itemLocation[i]}/>
+                        return <CardChampion key={i} styles={{ right: '3.35%'}} champId={champLocation[i]}/>
                     }
-                    return <CardChampion key={i} styles={{ right: '5%'}} />
+                    return <CardChampion key={i} styles={{ right: '3.35%'}} />
                 }
                 if (champLocation[i]) {
-                    if (itemLocation[i]) return <CardChampion key={i} styles={{ left: '5%'}} champId={champLocation[i]} items={itemLocation[i]}/>
-                    return <CardChampion key={i} styles={{ left: '5%'}} champId={champLocation[i]}/>
+                    if (itemLocation[i]) return <CardChampion key={i} styles={{ left: '3.35%'}} champId={champLocation[i]} items={itemLocation[i]}/>
+                    return <CardChampion key={i} styles={{ left: '3.35%'}} champId={champLocation[i]}/>
                 }
-                return <CardChampion key={i} styles={{ left: '5%'}} />
+                return <CardChampion key={i} styles={{ left: '3.35%'}} />
             })}
 
             <div className={style.triangle}/>
