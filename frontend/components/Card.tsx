@@ -14,6 +14,7 @@ export default function Card({i, deck, changeIndex}: CardItem) {
     const [isUp, setIsUp] = useState(false);
 
     const goCardInfo = () => {
+        console.log(deck.description.length);
         localStorage.setItem('cardId', JSON.stringify({ card: deck.card_id, thumb: deck.id }));
         router.push('/cardInfo');
     }
@@ -55,7 +56,7 @@ export default function Card({i, deck, changeIndex}: CardItem) {
                             }
                         })}
                     </div>
-                    <div>설명: {`${deck.description.substring(0, 31)}...`}</div>
+                    <div>설명: {deck.description.split('').length > 30 ? `${deck.description.substring(0, 31)}...` : deck.description}</div>
                     <div className={style.time}>{parseDate(deck.created_at)}</div>
                 </div>
             </div>
