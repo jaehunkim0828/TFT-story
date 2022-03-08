@@ -40,7 +40,7 @@ export default function DropChampion({
 
   const getchampionTraits = async () => {
     return await axios
-      .get(`http://15.165.15.185:8080/champion/traits/${id}`)
+      .get(`http://3.34.197.199:8080/champion/traits/${id}`)
       .then(({ data }) => {
         const values: number[] = Object.values(deckInfo.final);
         if (values.filter((champId: number) => champId === id).length) {
@@ -80,7 +80,9 @@ export default function DropChampion({
         .length < 2
     ) {
       await axios
-        .get(`http://15.165.15.185:8080/champion/traits/${deckInfo.final[indexs]}`)
+        .get(
+          `http://3.34.197.199:8080/champion/traits/${deckInfo.final[indexs]}`
+        )
         .then(({ data }) => {
           data.map((trait: string) => {
             dispatch(countDown(trait));

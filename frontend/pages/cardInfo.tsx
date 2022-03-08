@@ -40,13 +40,13 @@ export default function CardInfo() {
     const cardIds = localStorage.getItem("cardId");
     if (!cardIds) return router.push("/main");
     const { card, thumb } = JSON.parse(cardIds);
-    const championsData = await axios.get(`http://15.165.15.185:8080/champion`);
-    const cardData = await axios.get(`http://15.165.15.185:8080/card/${card}`);
+    const championsData = await axios.get(`http://3.34.197.199:8080/champion`);
+    const cardData = await axios.get(`http://3.34.197.199:8080/card/${card}`);
     const thumbData = await axios.get(
-      `http://15.165.15.185:8080/card/thumb/${thumb}`
+      `http://3.34.197.199:8080/card/thumb/${thumb}`
     );
     const backColor = await axios.get(
-      `http://15.165.15.185:8080/card/trait/${card}`
+      `http://3.34.197.199:8080/card/trait/${card}`
     );
     setChampions(championsData.data);
     setInfo(cardData.data[0]);

@@ -10,7 +10,9 @@ export default function CardList() {
   const [deleteindex, setDeleteIndex] = useState<number>(-1);
 
   const getCardList = async () => {
-    const cardList: CardLists = await axios.get("http://15.165.15.185:8080/card");
+    const cardList: CardLists = await axios.get(
+      "http://3.34.197.199:8080/card"
+    );
     setDecks(cardList.data);
   };
 
