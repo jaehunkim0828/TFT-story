@@ -1,3 +1,4 @@
+import e from 'express';
 import express from 'express';
 import { body } from 'express-validator';
 
@@ -37,8 +38,20 @@ cardRouter.route('/thumb/:id')
 
 cardRouter.route('/trait/:id')
     .get(async (req, res, next) => {
-        const cardTrait = await db.execute('SELECT trait_id, background FROM card_trait');
-        res.send(cardTrait[0]);
+        const {id} = req.params;
+        const cardTrait = await db.execute('SELECT trait_id, background FROM card_trait WHERE card_id=?', [id]);
+        const toString = cardTrait[0].map(e => JSON.stringify(e.trait_id)).join();
+        const trait = await db.execute(`SELECT name, id FROM traits WHERE id IN (${toString})`);
+        const result = cardTrait[0].map((e, i) => {
+            return trait[0].map(tr => {
+                if (tr.id === e.trait_id) {
+                    return { ...e, name: tr.name };
+                }
+                return false;
+            }).filter(e => e)[0];
+        })
+        console.log(result);
+        res.send(result);
     })
     .post(validate, cardController.makeCardTrait);
 
