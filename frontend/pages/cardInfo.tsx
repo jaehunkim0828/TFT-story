@@ -35,8 +35,10 @@ export default function CardInfo() {
   const [cardInfo, setInfo] = useState(initialCardInfo);
   const [thumbInfo, setThumbInfo] = useState(initialThumbInfo);
   const [champions, setChampions] = useState<object[]>([]);
+  const [traitBack, setTraitBack] = useState<any[]>([]);
 
   const getIdDeckInfo = async () => {
+    const data: any[] = [];
     const cardIds = localStorage.getItem("cardId");
     if (!cardIds) return router.push("/main");
     const { card, thumb } = JSON.parse(cardIds);
@@ -48,10 +50,12 @@ export default function CardInfo() {
     const backColor = await axios.get(
       `http://3.34.197.199:8080/card/trait/${card}`
     );
+    setTraitBack(backColor.data);
     setChampions(championsData.data);
     setInfo(cardData.data[0]);
     setThumbInfo(thumbData.data[0]);
   };
+
   useEffect(() => {
     getIdDeckInfo();
   }, []);
@@ -97,7 +101,7 @@ export default function CardInfo() {
             name={"레벨 7"}
           />
         </DropDown>
-        <SemiTraits traits={cardInfo.traits} />
+        <SemiTraits traits={cardInfo.traits} traitBack={traitBack}/>
         <Table final={cardInfo.champions} items={cardInfo.items} />
       </div>
     </div>
