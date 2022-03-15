@@ -135,12 +135,9 @@ export default function MakeCard() {
             "http://3.34.197.199:8080/card",
             deckInfo
           );
-          await axios.post(
-            `http://3.34.197.199:8080/card/trait/${cardId.data}`,
-            {
-              backColor: backColor,
-            }
-          );
+          await axios.post(`http://3.34.197.199:8080/card/trait/${cardId.data}`, {
+            backColor: backColor,
+          });
           dispatch(countUpDeckMake());
           router.push("/main");
         }
