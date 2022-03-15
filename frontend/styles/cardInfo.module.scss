@@ -38,16 +38,27 @@
         display: flex;
         font-size: 1.5rem;
         align-items: center;
-        background-color: rgb(250, 152, 152);
         padding: 0.5rem;
         border-radius: 10px;
         margin: 0.5rem 1rem;
+        border: 1px solid black;
+        background-color: rgb(128, 128, 128);
 
-        .traitImage {
-          width: 1.5rem;
-          height: 1.5rem;
+        .imgBackground {
+          width: 2.5rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-size: 100%;
           margin-right: 5px;
+
+          .traitImage {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
         }
+
         .count {
           color: #022e57;
           margin-left: 5px;
@@ -123,10 +134,14 @@
           font-size: 1rem;
           margin: 0.5rem;
 
-          .traitImage {
-            width: 1rem;
-            height: 1rem;
-            margin-right: 5px;
+          .imgBackground {
+            width: 1.7rem;
+            height: 1.7rem;
+
+            .traitImage {
+              width: 1rem;
+              height: 1rem;
+            }
           }
           .count {
             color: #022e57;
@@ -154,10 +169,14 @@
           padding: 0.25rem;
           border-radius: 5px;
 
-          .traitImage {
-            width: 0.6rem;
-            height: 0.6rem;
-            margin-right: 3px;
+          .imgBackground {
+            width: 1.2rem;
+            height: 1.2rem;
+
+            .traitImage {
+              width: 0.6rem;
+              height: 0.6rem;
+            }
           }
           .count {
             color: #022e57;
