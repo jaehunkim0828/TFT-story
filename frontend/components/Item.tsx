@@ -61,7 +61,6 @@ export default function Item({ item }: any) {
     }, [isDragging]);
 
     useEffect(() => {
-        console.log(item);
         getCombination(item.com1).then(image => setComImage((prev: any) => {
             return {
                 ...prev,

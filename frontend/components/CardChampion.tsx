@@ -67,7 +67,6 @@ export default function CardChampion({ styles, champId, items }: CardChampionPro
                 com2: image
             }
         }));
-        console.log('hi');
     } ,[ishover])
 
     useEffect(() => {

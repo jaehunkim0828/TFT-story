@@ -14,7 +14,6 @@ export default function Card({i, deck, changeIndex}: CardItem) {
     const [isUp, setIsUp] = useState(false);
 
     const goCardInfo = () => {
-        console.log(deck.description.length);
         localStorage.setItem('cardId', JSON.stringify({ card: deck.card_id, thumb: deck.id }));
         router.push('/cardInfo');
     }

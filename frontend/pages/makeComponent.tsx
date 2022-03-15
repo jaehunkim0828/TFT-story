@@ -9,7 +9,6 @@ export default function MakeComponent() {
             <div
                 onMouseOver={() => {
                     setIshover(true);
-                    console.log(ishover);
                 }}
                 onMouseLeave={() => {
                     setIshover(false);

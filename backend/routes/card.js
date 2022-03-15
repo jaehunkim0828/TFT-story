@@ -50,7 +50,6 @@ cardRouter.route('/trait/:id')
                 return false;
             }).filter(e => e)[0];
         })
-        console.log(result);
         res.send(result);
     })
     .post(validate, cardController.makeCardTrait);
