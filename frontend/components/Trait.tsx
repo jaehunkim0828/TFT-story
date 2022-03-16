@@ -50,6 +50,26 @@ export default function Trait({trait, setBackColor, backColor}: {trait: { name: 
                 return { border: '1px solid black', backgroundColor: '#c1c1c1', backgroundImage: `url('${httpImage('/images/color/gold.svg')}`};
             }
         }
+        if (traitRange.length === 2) {
+            if (num === 0) {
+                setBackColor((prev: any) => {
+                    return {
+                        ...prev,
+                        [trait.name]:'/images/color/bronze.svg'
+                    }
+                });
+                return { border: '1px solid black', backgroundColor: '#c1c1c1', backgroundImage: `url('${httpImage('/images/color/bronze.svg')}`};
+            }
+            if (num === 1) {
+                setBackColor((prev: any) => {
+                    return {
+                        ...prev,
+                        [trait.name]:'/images/color/gold.svg'
+                    }
+                });
+                return { border: '1px solid black', backgroundColor: '#c1c1c1', backgroundImage: `url('${httpImage('/images/color/gold.svg')}`};
+            }
+        }
         if (traitRange.length === 3 && trait.name !== '범죄도시') {
             if (num === 0) {
                 setBackColor((prev: any) => {
