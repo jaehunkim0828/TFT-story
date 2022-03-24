@@ -24,4 +24,4 @@ app.get("/", (req, res, next) => {
   res.send("hello");
 });
 
-app.listen(8080, () => console.log(`running 3.34.197.199:${8080}`));
+app.listen(8080, () => console.log(`running 3.36.60.81:${8080}`));

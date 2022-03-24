@@ -1,5 +1,5 @@
 export default function httpImage(image: string) {
-  return `http://3.34.197.199:8080${image}`;
+  return `http://3.36.60.81:8080${image}`;
 }
 
-export const http = "http://3.34.197.199:8080";
+export const http = "http://3.36.60.81:8080";
