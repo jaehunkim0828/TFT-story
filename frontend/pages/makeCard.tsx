@@ -99,17 +99,17 @@ export default function MakeCard() {
   const [deckInfo, setDeckInfo] = useState(initialDeckInfo);
 
   const getAll = async () => {
-    await axios.get("http://3.34.197.199:8080/champion").then((champs: any) => {
+    await axios.get("https://3.34.197.199:8080/champion").then((champs: any) => {
       setChampion(champs.data);
     });
   };
   const getaugmented = async () => {
-    const sugmente = await axios.get("http://3.34.197.199:8080/augmented");
+    const sugmente = await axios.get("https://3.34.197.199:8080/augmented");
     setaugmented(sugmente.data);
   };
 
   const getItem = async () => {
-    const items = await axios.get("http://3.34.197.199:8080/item");
+    const items = await axios.get("https://3.34.197.199:8080/item");
     setItems(items.data);
   };
 
@@ -132,10 +132,10 @@ export default function MakeCard() {
         }
         if (makeCardVaildate(deckInfo)) {
           const cardId = await axios.post(
-            "http://3.34.197.199:8080/card",
+            "https://3.34.197.199:8080/card",
             deckInfo
           );
-          await axios.post(`http://3.34.197.199:8080/card/trait/${cardId.data}`, {
+          await axios.post(`https://3.34.197.199:8080/card/trait/${cardId.data}`, {
             backColor: backColor,
           });
           dispatch(countUpDeckMake());

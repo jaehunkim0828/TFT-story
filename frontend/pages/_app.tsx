@@ -14,7 +14,7 @@ return (
         <div>
             <Head>
                 <title>롤체 스토리</title>
-                <link rel='canonical' href="http://tftstory.com" ></link>
+                <link rel='canonical' href="https://tftstory.com" ></link>
                 <meta
                     name="description"
                     content="자신만의 덱을 롤체스토리에서 완성해보세요."
